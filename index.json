@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE UNITED STATES OF SEX OFFENDERS - Central Digital Headquarters</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@404;700&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- GLOBAL & BASE STYLES --- */
+:root {
+            --color-black: #000000;
+            --color-white: #FFFFFF;
+            --color-crimson-red: #DC143C; /* Dominant accent red */
+            --color-dark-gray: #333333;
+            --color-light-gray: #CCCCCC;
+            --color-text-secondary: #AAAAAA;
+
+            --font-family-title: 'Oswald', sans-serif;
+            --font-family-body: 'Montserrat', sans-serif;
+            --transition-speed: 0.4s;
+            --border-radius-lg: 12px;
+            --border-radius-md: 8px;
+            --z-index-nav: 100;
+            --z-index-modal: 1000;
+            --z-index-intro: 2000;
+}
+/* Basic Reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+}
+
+        body {
+            font-family: var(--font-family-body);
+            background-color: var(--color-black);
+            color: var(--color-white);
+            overflow: hidden; /* Controlled by JS for main content */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            cursor: default;
+            position: relative;
+}
+
+        a {
+            color: var(--color-crimson-red);
+            text-decoration: none;
+            transition: color var(--transition-speed);
+}
+        a:hover {
+            color: var(--color-white);
+            text-shadow: 0 0 5px var(--color-crimson-red);
+}
+
+        button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--color-white);
+            font-family: var(--font-family-body);
+            font-size: 1em;
+            padding: 0;
+}
+/* Scrollbar Styling (Modern Browsers) */
+: :-webkit-scrollbar { width: 8px;
+}
+        : :-webkit-scrollbar-track { background: var(--color-dark-gray);
+}
+        : :-webkit-scrollbar-thumb {
+            background: var(--color-crimson-red);
+            border-radius: 4px;
+            transition: background var(--transition-speed);
+}
+        : :-webkit-scrollbar-thumb:hover { background: var(--color-white);
+}
+/* --- USSO EMBLEM (SHARED STYLES) --- */
+        .usso-emblem {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 80px; /* Base size */
+            height: 80px; /* Base size */
+            background-color: var(--color-crimson-red);
+            border: 2px solid var(--color-white);
+            position: relative;
+            overflow: hidden;
+            transition: all var(--transition-speed) ease;
+            box-shadow: 0 0 10px rgba(0,
+  0,
+  0,
+  0.5);
+}
+
+        .usso-emblem: :before,
+        .usso-emblem: :after {
+            content: '';
+            position: absolute;
+            background-color: var(--color-white);
+}
+/* Emblem Design - Symmetrical, Aggressive, Elegant */
+        .usso-emblem: :before {
+            width: 20%;
+            height: 120%;
+            transform: rotate(45deg);
+}
+        .usso-emblem: :after {
+            width: 20%;
+            height: 120%;
+            transform: rotate(-45deg);
+}
+
+        .usso-emblem-center {
+            position: absolute;
+            width: 40%;
+            height: 40%;
+            background-color: var(--color-black);
+            border: 2px solid var(--color-crimson-red);
+            transform: rotate(45deg);
+            z-index: 1;
+}
+        .usso-emblem-text {
+            position: absolute;
+            font-family: var(--font-family-title);
+            font-size: 0.9em;
+            font-weight: 700;
+            color: var(--color-white);
+            z-index: 2;
+}
+
+        .usso-emblem.small { width: 50px; height: 50px;
+}
+        .usso-emblem.small .usso-emblem-text { font-size: 0.7em;
+}
+        .usso-emblem.small .usso-emblem-center { width: 30%; height: 30%;
+}
+/* --- SOUND & PERFORMANCE CONTROLS --- */
+        .controls-panel {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: var(--z-index-modal);
+            display: flex;
+            gap: 10px;
+            flex-direction: column;
+            background: rgba(0,
+  0,
+  0,
+  0.7);
+            padding: 10px;
+            border-radius: var(--border-radius-md);
+            border: 1px solid var(--color-crimson-red);
+}
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8em;
+            color: var(--color-text-secondary);
+}
+        .control-group input[type="range"
+] {
+            width: 80px;
+            -webkit-appearance: none;
+            height: 3px;
+            background: var(--color-dark-gray);
+            border-radius: 2px;
+            outline: none;
+            cursor: pointer;
+}
+        .control-group input[type="range"
+]: :-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--color-crimson-red);
+            cursor: pointer;
+            box-shadow: 0 0 5px var(--color-crimson-red);
+}
+        .control-group button {
+            background: var(--color-dark-gray);
+            color: var(--color-light-gray);
+            border: 1px solid var(--color-crimson-red);
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 0.75em;
+            transition: background var(--transition-speed), color var(--transition-speed);
+}
+        .control-group button:hover {
+            background: var(--color-crimson-red);
+            color: var(--color-white);
+}
+/* --- INTRO SEQUENCE --- */
+        #intro-sequence {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--color-black);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: var(--z-index-intro);
+            opacity: 1;
+            transition: opacity 2s ease-out;
+            pointer-events: all;
+            overflow: hidden;
+}
+        #intro-sequence.fade-out {
+            opacity: 0;
+            pointer-events: none;
+}
+
+        .intro-point-light {
+            width: 0;
+            height: 0;
+            background-color: var(--color-crimson-red);
+            border-radius: 50%;
+            box-shadow: 0 0 100px var(--color-crimson-red);
+            animation: expandPoint 3s ease-out 1s forwards;
+            opacity: 0;
+}
+        @keyframes expandPoint {
+  0% { width: 0; height: 0; opacity: 0; transform: scale(0);
+  }
+            50% { opacity: 1; transform: scale(1);
+  }
+            100% { width: 100px; height: 100px; opacity: 0.8;
+  }
+}
+
+        .intro-globe-container {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            opacity: 0;
+            animation: fadeIn 2s ease-out 4s forwards;
+}
+        .intro-globe-frame {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 1px solid rgba(255,
+  255,
+  255,
+  0.2);
+            animation: rotateGlobe 40s linear infinite;
+            transform-style: preserve-3d;
+}
+        .intro-globe-territory {
+            position: absolute;
+            width: 80%; /* Fictional continent size */
+            height: 80%;
+            background-color: var(--color-dark-gray); /* Placeholder landmass */
+            border-radius: 50%;
+            box-shadow: 0 0 30px rgba(0,
+  0,
+  0,
+  0.5);
+            opacity: 0;
+            animation: fadeIn 2s ease-out 5s forwards;
+}
+        .intro-usso-highlight {
+            position: absolute;
+            width: 60%;
+            height: 60%;
+            background-color: var(--color-crimson-red);
+            border-radius: 50%;
+            filter: blur(20px);
+            box-shadow: 0 0 80px var(--color-crimson-red);
+            opacity: 0;
+            animation: fadeIn 2s ease-out 6s forwards, pulseRed 3s infinite alternate;
+}
+        .intro-city-lights {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            animation: fadeIn 2s ease-out 6.5s forwards;
+}
+        .intro-city-light {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background-color: var(--color-white);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--color-white);
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+            animation-delay: var(--light-delay);
+}
+
+        .intro-text-overlay {
+            position: absolute;
+            text-align: center;
+            font-family: var(--font-family-title);
+            font-weight: 700;
+            letter-spacing: 2px;
+            z-index: 10;
+            opacity: 0;
+            text-shadow: 0 0 20px rgba(0,
+  0,
+  0,
+  0.8);
+}
+        #intro-title-full {
+            font-size: 5em;
+            color: var(--color-white);
+            animation: fadeInScale 1.5s ease-out 9s forwards;
+}
+        #intro-title-abbr {
+            font-size: 2.5em;
+            color: var(--color-crimson-red);
+            margin-top: 10px;
+            animation: fadeInScale 1.5s ease-out 9.5s forwards;
+}
+        #intro-title-great {
+            font-size: 1.8em;
+            color: var(--color-white);
+            margin-top: 20px;
+            animation: fadeInScale 1.5s ease-out 10s forwards;
+}
+
+        #intro-final-message {
+            position: absolute;
+            bottom: 5vh;
+            text-align: center;
+            font-size: 1.2em;
+            color: var(--color-light-gray);
+            line-height: 1.6;
+            opacity: 0;
+            animation: fadeIn 2s ease-out 13s forwards;
+            padding: 20px;
+            background: rgba(0,
+  0,
+  0,
+  0.5);
+            border-radius: var(--border-radius-md);
+            border: 1px solid var(--color-crimson-red);
+}
+        #intro-final-message strong {
+            display: block;
+            font-size: 1.8em;
+            color: var(--color-crimson-red);
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px var(--color-crimson-red);
+}
+/* --- MAIN PORTAL --- */
+        #main-portal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--color-black);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1s ease-out, visibility 0s 1s;
+            overflow: hidden; /* For initial state */
+            display: grid;
+            grid-template-areas: "nav header""nav content";
+            grid-template-columns: 250px 1fr;
+            grid-template-rows: auto 1fr;
+            pointer-events: none;
+            perspective: 1000px;
+}
+        #main-portal.active {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 1s ease-out;
+            pointer-events: all;
+            overflow: hidden; /* Control content overflow later */
+}
+        #main-portal.active #portal-content {
+            overflow-y: auto; /* Allow scrolling for content */
+}
+/* --- NAVIGATION --- */
+        #main-nav {
+            grid-area: nav;
+            background-color: var(--color-black);
+            border-right: 1px solid var(--color-dark-gray);
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            box-shadow: 5px 0 20px rgba(0,
+  0,
+  0,
+  0.5);
+            z-index: var(--z-index-nav);
+            transform: translateX(-100%);
+            animation: slideInLeftNav 0.8s ease-out 1.5s forwards;
+            opacity: 0;
+}
+        .nav-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+}
+        .nav-header .usso-emblem {
+            width: 60px;
+            height: 60px;
+}
+        .nav-header .usso-emblem .usso-emblem-text { font-size: 0.8em;
+}
+        .nav-header .nav-title {
+            font-family: var(--font-family-title);
+            font-size: 1.5em;
+            font-weight: 700;
+            color: var(--color-white);
+            letter-spacing: 1px;
+            text-shadow: 0 0 5px rgba(255,
+  255,
+  255,
+  0.2);
+}
+
+        #main-nav button {
+            background: rgba(255,
+  255,
+  255,
+  0.05);
+            border: 1px solid var(--color-dark-gray);
+            color: var(--color-light-gray);
+            padding: 12px 18px;
+            text-align: left;
+            font-family: var(--font-family-body);
+            font-size: 1em;
+            border-radius: var(--border-radius-md);
+            transition: all var(--transition-speed) ease;
+            position: relative;
+            overflow: hidden;
+            outline: none;
+}
+        #main-nav button: :before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(220,
+  20,
+  60,
+  0.15);
+            transition: left var(--transition-speed) ease;
+            z-index: 0;
+}
+        #main-nav button:hover: :before {
+            left: 0;
+}
+        #main-nav button span {
+            position: relative;
+            z-index: 1;
+}
+        #main-nav button:hover {
+            color: var(--color-white);
+            border-color: var(--color-crimson-red);
+            transform: translateX(5px);
+            box-shadow: 0 0 10px var(--color-crimson-red);
+}
+        #main-nav button.active {
+            background-color: var(--color-crimson-red);
+            color: var(--color-white);
+            font-weight: 700;
+            border-color: var(--color-crimson-red);
+            box-shadow: 0 0 15px var(--color-crimson-red);
+}
+/* --- HEADER --- */
+        #portal-header {
+            grid-area: header;
+            background-color: var(--color-black);
+            border-bottom: 1px solid var(--color-dark-gray);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 5px 20px rgba(0,
+  0,
+  0,
+  0.5);
+            z-index: var(--z-index-nav);
+            transform: translateY(-100%);
+            animation: slideInTopHeader 0.8s ease-out 1.7s forwards;
+            opacity: 0;
+}
+        .header-title {
+            font-family: var(--font-family-title);
+            font-size: 2.2em;
+            font-weight: 700;
+            color: var(--color-white);
+            letter-spacing: 1.5px;
+            text-shadow: 0 0 10px rgba(255,
+  255,
+  255,
+  0.3);
+}
+        .header-status {
+            font-size: 0.9em;
+            color: var(--color-crimson-red);
+            background-color: rgba(220,
+  20,
+  60,
+  0.1);
+            padding: 8px 15px;
+            border-radius: var(--border-radius-md);
+            border: 1px solid var(--color-crimson-red);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+}
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background-color: var(--color-crimson-red);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--color-crimson-red);
+            animation: pulseRed 1.5s infinite alternate;
+}
+/* --- MAIN CONTENT AREA --- */
+        #portal-content {
+            grid-area: content;
+            background-color: var(--color-black);
+            padding: 40px;
+            overflow-y: auto; /* Controlled by JS for active state */
+            position: relative;
+            transform: translateX(100%);
+            animation: slideInRightContent 0.8s ease-out 1.9s forwards;
+            opacity: 0;
+}
+        .content-section {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+        .content-section.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+}
+        .section-header {
+            font-family: var(--font-family-title);
+            font-size: 2.5em;
+            font-weight: 700;
+            color: var(--color-white);
+            margin-bottom: 40px;
+            text-shadow: 0 0 15px rgba(255,
+  255,
+  255,
+  0.4);
+            border-bottom: 2px solid var(--color-crimson-red);
+            padding-bottom: 15px;
+            letter-spacing: 1px;
+            text-align: center;
+}
+/* --- MAIN HERO (After Intro) --- */
+        #hero-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 120px); /* Adjust for nav/header height */
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+}
+        .hero-globe-wrapper {
+            width: 500px;
+            height: 500px;
+            position: relative;
+            margin: 40px auto;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            animation: rotateGlobe 60s linear infinite;
+}
+        .hero-globe-surface {
+            width: 100%;
+            height: 100%;
+            background-color: var(--color-dark-gray);
+            border-radius: 50%;
+            box-shadow: 0 0 50px rgba(0,
+  0,
+  0,
+  0.8), inset 0 0 50px rgba(255,
+  255,
+  255,
+  0.05);
+            position: absolute;
+            top: 0; left: 0;
+            transform-style: preserve-3d;
+            overflow: hidden;
+}
+        .hero-globe-usso-territory {
+            position: absolute;
+            top: 20%; left: 30%; /* Example position */
+            width: 50%;
+            height: 60%;
+            background-color: var(--color-crimson-red);
+            filter: blur(25px);
+            border-radius: 50%;
+            box-shadow: 0 0 100px var(--color-crimson-red);
+            animation: pulseRed 4s infinite alternate;
+}
+        .hero-globe-city-light {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background-color: var(--color-white);
+            border-radius: 50%;
+            box-shadow: 0 0 12px var(--color-white);
+            opacity: 0.8;
+            animation: lightFlicker 2s infinite alternate var(--light-delay);
+}
+        .hero-globe-city-light:nth-child(1) { top: 25%; left: 40%; --light-delay: 0.2s;
+}
+        .hero-globe-city-light:nth-child(2) { top: 55%; left: 70%; --light-delay: 0.7s;
+}
+        .hero-globe-city-light:nth-child(3) { top: 70%; left: 20%; --light-delay: 1.1s;
+}
+        .hero-globe-city-light:nth-child(4) { top: 40%; left: 10%; --light-delay: 0.5s;
+}
+        .hero-globe-city-light:nth-child(5) { top: 10%; left: 80%; --light-delay: 1.5s;
+}
+
+        .hero-text {
+            font-family: var(--font-family-title);
+            margin-top: 20px;
+}
+        .hero-text h1 {
+            font-size: 3.5em;
+            color: var(--color-white);
+            text-shadow: 0 0 15px rgba(255,
+  255,
+  255,
+  0.4);
+            letter-spacing: 2px;
+}
+        .hero-text h2 {
+            font-size: 2em;
+            color: var(--color-crimson-red);
+            margin-top: 5px;
+            text-shadow: 0 0 10px var(--color-crimson-red);
+}
+        .hero-text p {
+            font-size: 1.2em;
+            color: var(--color-light-gray);
+            margin-top: 15px;
+            font-style: italic;
+}
+        .hero-buttons {
+            margin-top: 40px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+}
+        .hero-buttons button {
+            background: var(--color-dark-gray);
+            border: 1px solid var(--color-crimson-red);
+            padding: 15px 30px;
+            border-radius: var(--border-radius-md);
+            font-family: var(--font-family-title);
+            font-size: 1.1em;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: var(--color-white);
+            transition: all var(--transition-speed) ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0,
+  0,
+  0,
+  0.5);
+}
+        .hero-buttons button: :before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(220,
+  20,
+  60,
+  0.3);
+            transition: left var(--transition-speed) ease;
+}
+        .hero-buttons button:hover: :before {
+            left: 0;
+}
+        .hero-buttons button:hover {
+            border-color: var(--color-white);
+            color: var(--color-crimson-red);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 0 20px var(--color-crimson-red);
+}
+/* --- NATIONAL IDENTITY SECTION --- */
+        #national-identity-section {
+            text-align: center;
+}
+        .national-identity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px,
+  1fr));
+            gap: 30px;
+            margin-top: 40px;
+}
+        .identity-card {
+            background: var(--color-dark-gray);
+            border: 1px solid var(--color-crimson-red);
+            border-radius: var(--border-radius-lg);
+            padding: 30px;
+            box-shadow: 0 0 15px rgba(0,
+  0,
+  0,
+  0.5);
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+        .identity-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 0 25px var(--color-crimson-red);
+}
+        .identity-card strong {
+            display: block;
+            font-family: var(--font-family-title);
+            font-size: 1.8em;
+            color: var(--color-white);
+            margin-bottom: 10px;
+}
+        .identity-card span {
+            font-size: 1em;
+            color: var(--color-text-secondary);
+}
+        .national-flag-display {
+            width: 400px;
+            height: 250px;
+            margin: 50px auto;
+            background-color: var(--color-black);
+            border: 2px solid var(--color-white);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.5s ease;
+            box-shadow: 0 0 20px rgba(0,
+  0,
+  0,
+  0.5);
+            perspective: 1000px;
+            transform-style: preserve-3d;
+}
+        .national-flag-display:hover {
+            transform: translateY(-10px) rotateY(5deg);
+}
+        .flag-content {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0; left: 0;
+            background-image:
+                linear-gradient(to right, var(--color-crimson-red) 33%, var(--color-white) 33%, var(--color-white) 66%, var(--color-black) 66%);
+            animation: flagWave 6s infinite alternate ease-in-out;
+            transform-origin: 0% 50%;
+}
+        .flag-emblem-overlay {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%,
+  -50%);
+            width: 100px;
+            height: 100px;
+            filter: drop-shadow(0 0 10px rgba(0,
+  0,
+  0,
+  0.7));
+            transition: opacity var(--transition-speed) ease;
+}
+        .flag-emblem-overlay .usso-emblem {
+            width: 100%; height: 100%;
+            border-width: 4px;
+            background-color: transparent;
+            box-shadow: none;
+}
+        .flag-emblem-overlay .usso-emblem: :before,
+        .flag-emblem-overlay .usso-emblem: :after { background-color: var(--color-white);
+}
+        .flag-emblem-overlay .usso-emblem-center { background-color: var(--color-black); border-color: var(--color-crimson-red);
+}
+        .flag-emblem-overlay .usso-emblem-text { color: var(--color-white); font-size: 1em;
+}
+/* Flag Info Panel (Modal) */
+        .flag-info-panel, .timeline-info-panel, .archive-document-viewer {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,
+  -50%) scale(0.9);
+            background: var(--color-black);
+            border: 2px solid var(--color-crimson-red);
+            border-radius: var(--border-radius-lg);
+            padding: 50px;
+            max-width: 700px;
+            max-height: 90vh;
+            overflow-y: auto;
+            z-index: var(--z-index-modal);
+            box-shadow: 0 0 40px rgba(0,
+  0,
+  0,
+  0.7),
+  0 0 30px var(--color-crimson-red);
+            display: none;
+            opacity: 0;
+            transition: all 0.6s ease-out;
+}
+        .flag-info-panel.active, .timeline-info-panel.active, .archive-document-viewer.active {
+            display: block;
+            opacity: 1;
+            transform: translate(-50%,
+  -50%) scale(1);
+}
+        .modal-title {
+            font-family: var(--font-family-title);
+            font-size: 2.8em;
+            color: var(--color-crimson-red);
+            margin-bottom: 25px;
+            text-shadow: 0 0 15px var(--color-crimson-red);
+}
+        .modal-content p {
+            font-size: 1.1em;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            color: var(--color-light-gray);
+}
+        .modal-content strong {
+            color: var(--color-white);
+            font-weight: 700;
+}
+        .modal-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--color-dark-gray);
+            color: var(--color-white);
+            border: 1px solid var(--color-crimson-red);
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            font-size: 1.5em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all var(--transition-speed);
+}
+        .modal-close-btn:hover {
+            background: var(--color-crimson-red);
+            transform: scale(1.1);
+}
+/* --- LEADERSHIP SECTION --- */
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px,
+  1fr));
+            gap: 35px;
+            margin-top: 40px;
+}
+        .leader-card {
+            background: var(--color-dark-gray);
+            border: 2px solid var(--color-black);
+            border-radius: var(--border-radius-lg);
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0,
+  0,
+  0,
+  0.6);
+            position: relative;
+            overflow: hidden;
+            transition: all var(--transition-speed) ease;
+            cursor: pointer;
+}
+        .leader-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            border-color: var(--color-crimson-red);
+            box-shadow: 0 0 30px var(--color-crimson-red);
+}
+        .leader-card-bg-glow {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at center, rgba(220,
+  20,
+  60,
+  0.2) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity var(--transition-speed) ease;
+}
+        .leader-card:hover .leader-card-bg-glow { opacity: 1;
+}
+        .leader-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: var(--color-black);
+            border: 3px solid var(--color-white);
+            margin: 0 auto 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: var(--font-family-title);
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--color-crimson-red);
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+}
+        .leader-avatar img {
+            width: 100%; height: 100%; object-fit: cover; border-radius: 50%;
+}
+        .leader-name {
+            font-family: var(--font-family-title);
+            font-size: 2.2em;
+            color: var(--color-white);
+            margin-bottom: 5px;
+            text-shadow: 0 0 10px rgba(255,
+  255,
+  255,
+  0.3);
+            position: relative; z-index: 1;
+}
+        .leader-title {
+            font-size: 1.1em;
+            color: var(--color-crimson-red);
+            margin-bottom: 15px;
+            position: relative; z-index: 1;
+}
+        .leader-description {
+            font-size: 0.95em;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            min-height: 80px; /* To prevent layout shift on hover */
+            opacity: 0;
+            max-height: 0;
+            transition: opacity var(--transition-speed) ease, max-height var(--transition-speed) ease;
+            overflow: hidden;
+            position: relative; z-index: 1;
+}
+        .leader-card:hover .leader-description {
+            opacity: 1;
+            max-height: 150px; /* Adjust as needed */
+}
+/* Specific leader styling */
+        .leader-card.president .leader-avatar { border-color: var(--color-crimson-red);
+}
+        .leader-card.president .leader-name { font-size: 2.8em; text-shadow: 0 0 15px var(--color-crimson-red);
+}
+        .leader-card.president .leader-title { font-size: 1.5em; color: var(--color-white);
+}
+        .leader-card.private .leader-title { color: var(--color-white);
+}
+        .leader-card.private .leader-description { color: var(--color-crimson-red); font-weight: bold;
+}
+/* Air Control Ahmad specific visuals */
+        .leader-card.air-control .leader-description {
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+}
+        .radar-mini {
+            width: 100px; height: 100px; border-radius: 50%;
+            border: 2px solid var(--color-white);
+            background: radial-gradient(circle, rgba(255,
+  255,
+  255,
+  0.05) 0%, rgba(220,
+  20,
+  60,
+  0.3) 100%);
+            position: relative; overflow: hidden; margin-top: 10px;
+            display: none;
+}
+        .leader-card.air-control:hover .radar-mini { display: block;
+}
+        .radar-sweep-mini {
+            position: absolute; top: 50%; left: 50%; width: 100%; height: 100%;
+            transform-origin: 0% 0%;
+            background: linear-gradient(90deg, rgba(220,
+  20,
+  60,
+  0) 0%, rgba(220,
+  20,
+  60,
+  0.8) 50%, rgba(220,
+  20,
+  60,
+  0) 100%);
+            opacity: 0.6; animation: radarSweep 2s linear infinite;
+}
+        .aircraft-marker-mini {
+            position: absolute; width: 6px; height: 6px; background-color: var(--color-white);
+            border-radius: 50%; box-shadow: 0 0 5px var(--color-white);
+            animation: markerPulse 1s infinite alternate;
+}
+        .aircraft-marker-mini:nth-child(1) { top: 20%; left: 70%; animation-delay: 0.2s;
+}
+        .aircraft-marker-mini:nth-child(2) { top: 50%; left: 30%; animation-delay: 0.7s;
+}
+        .aircraft-marker-mini:nth-child(3) { top: 80%; left: 50%; animation-delay: 1.1s;
+}
+        .airspace-status-mini {
+            font-size: 0.8em; color: var(--color-crimson-red); margin-top: 10px;
+            display: none;
+}
+        .leader-card.air-control:hover .airspace-status-mini { display: block;
+}
+/* --- GOVERNMENT SECTION --- */
+        #government-section {
+            text-align: center;
+}
+        .government-hierarchy {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+}
+        .hierarchy-level {
+            position: relative;
+            padding: 20px 0;
+            min-width: 250px;
+            text-align: center;
+}
+        .hierarchy-card-gov {
+            background: var(--color-dark-gray);
+            border: 1px solid var(--color-white);
+            padding: 15px 25px;
+            border-radius: var(--border-radius-md);
+            box-shadow: 0 0 10px rgba(0,
+  0,
+  0,
+  0.5);
+            font-family: var(--font-family-title);
+            font-size: 1.3em;
+            color: var(--color-white);
+            font-weight: 700;
+            transition: all var(--transition-speed);
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+}
+        .hierarchy-card-gov:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-crimson-red);
+            box-shadow: 0 0 15px var(--color-crimson-red);
+            color: var(--color-crimson-red);
+}
+        .hierarchy-line {
+            position: absolute;
+            width: 2px;
+            height: 40px;
+            background-color: var(--color-white);
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -20px;
+            z-index: 0;
+}
+        .hierarchy-line-horizontal {
+            position: absolute;
+            height: 2px;
+            background-color: var(--color-white);
+            width: calc(100% + 40px); /* Extends beyond for connecting branches */
+            left: -20px;
+            top: -10px;
+            z-index: 0;
+}
+        .hierarchy-department-row {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+            position: relative;
+}
+        .hierarchy-department-row: :before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            width: 2px;
+            height: 20px;
+            background-color: var(--color-white);
+            transform: translateX(-50%);
+}
+        .hierarchy-department-card {
+            font-family: var(--font-family-body);
+            font-size: 0.95em;
+            color: var(--color-light-gray);
+            background: var(--color-dark-gray);
+            border: 1px solid var(--color-dark-gray);
+            padding: 10px 15px;
+            border-radius: var(--border-radius-md);
+            transition: all var(--transition-speed);
+            cursor: pointer;
+}
+        .hierarchy-department-card:hover {
+            border-color: var(--color-crimson-red);
+            box-shadow: 0 0 8px var(--color-crimson-red);
+            color: var(--color-white);
+}
+/* --- CAPITAL CITY SECTION --- */
+        #capital-section {
+            position: relative;
+            height: 80vh;
+            background-color: var(--color-black);
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            box-shadow: inset 0 0 50px rgba(0,
+  0,
+  0,
+  0.8);
+            margin-top: 40px;
+}
+        .capital-skyline-bg {
+            position: absolute;
+            bottom: 0;
+            width: 150%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 800"><rect x="0" y="400" width="1500" height="400" fill="%23000000"/><path d="M0 800 L50 300 L100 800 Z M120 800 L160 100 L200 800 Z M250 800 L300 450 L350 800 Z M380 800 L420 200 L460 800 Z M500 800 L550 600 L600 800 Z M620 800 L660 50 L700 800 Z M750 800 L800 350 L850 800 Z M880 800 L920 700 L960 800 Z M1000 800 L1050 250 L1100 800 Z M1120 800 L1170 550 L1220 800 Z M1250 800 L1300 150 L1350 800 Z M1400 800 L1450 400 L1500 800 Z" fill="%231a1a1a"/><path d="M0 800 L40 400 L80 800 Z M110 800 L140 150 L170 800 Z M230 800 L270 500 L310 800 Z M360 800 L390 250 L420 800 Z M480 800 L520 650 L560 800 Z M600 800 L630 100 L660 800 Z M730 800 L770 450 L810 800 Z M860 800 L890 750 L920 800 Z M980 800 L1020 300 L1060 800 Z M1100 800 L1140 600 L1180 800 Z M1230 800 L1270 200 L1310 800 Z M1380 800 L1420 450 L1460 800 Z" fill="%23333333"/><rect x="655" y="50" width="20" height="700" fill="%23FFFFFF" opacity="0.1"/><circle cx="665" cy="50" r="15" fill="%23DC143C"/></svg>');
+            background-size: cover;
+            background-position: center bottom;
+            animation: moveCapitalSkyline 60s linear infinite alternate;
+            filter: brightness(0.7);
+}
+        .capital-light-glow {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 50%;
+            background: radial-gradient(circle at bottom, rgba(220,
+  20,
+  60,
+  0.4) 0%, transparent 70%);
+            animation: pulseRed 8s infinite alternate;
+            pointer-events: none;
+}
+        .flying-vehicle-light {
+            position: absolute;
+            width: 25px;
+            height: 3px;
+            background-color: var(--color-white);
+            box-shadow: 0 0 10px var(--color-white);
+            border-radius: 2px;
+            opacity: 0.8;
+            animation: flyVehicle 15s linear infinite var(--delay);
+}
+        .flying-vehicle-light:nth-child(1) { top: 20%; left: -10%; --delay: 0s; transform: rotateZ(5deg);
+}
+        .flying-vehicle-light:nth-child(2) { top: 40%; left: -30%; --delay: 5s; animation-duration: 20s; transform: rotateZ(-10deg);
+}
+        .flying-vehicle-light:nth-child(3) { top: 60%; left: -60%; --delay: 10s; animation-duration: 10s; transform: rotateZ(15deg);
+}
+
+        .capital-location-grid {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            display: grid;
+            grid-template-columns: repeat(3,
+  1fr);
+            grid-template-rows: repeat(2,
+  1fr);
+            gap: 0;
+            pointer-events: none;
+}
+        .capital-location-overlay {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: var(--font-family-title);
+            font-size: 1.5em;
+            color: var(--color-white);
+            text-shadow: 0 0 10px rgba(0,
+  0,
+  0,
+  0.8);
+            border: 1px solid rgba(255,
+  255,
+  255,
+  0.1);
+            background: rgba(0,
+  0,
+  0,
+  0.2);
+            transition: all var(--transition-speed);
+            pointer-events: all;
+            cursor: pointer;
+}
+        .capital-location-overlay:hover {
+            background: rgba(220,
+  20,
+  60,
+  0.3);
+            border-color: var(--color-crimson-red);
+            color: var(--color-crimson-red);
+            box-shadow: inset 0 0 20px var(--color-crimson-red);
+}
+/* --- CONTINENT / MAP SECTION --- */
+        #territories-section {
+            text-align: center;
+            position: relative;
+}
+        .continent-map-wrapper {
+            position: relative;
+            width: 100%;
+            height: 70vh;
+            background-color: var(--color-black);
+            border: 2px solid var(--color-crimson-red);
+            border-radius: var(--border-radius-lg);
+            margin: 40px auto;
+            overflow: hidden;
+            box-shadow: 0 0 30px var(--color-crimson-red);
+            cursor: grab;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
+}
+        .continent-map-wrapper.dragging {
+            cursor: grabbing;
+}
+        .map-grid-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image:
+                linear-gradient(to right, rgba(255,
+  255,
+  255,
+  0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,
+  255,
+  255,
+  0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            animation: panGrid 100s linear infinite;
+            z-index: 1;
+}
+        .fictional-continent {
+            position: absolute;
+            width: 90%; height: 90%;
+            background-color: var(--color-dark-gray); /* Base landmass color */
+            border-radius: 5%; /* Placeholder shape for continent */
+            box-shadow: 0 0 50px rgba(0,
+  0,
+  0,
+  0.7);
+            z-index: 2;
+            transform: scale(1);
+            transition: transform 0.5s ease-in-out;
+            position: relative;
+            overflow: hidden;
+}
+        .map-location-point {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--color-white);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--color-white);
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+            z-index: 3;
+            transform-style: preserve-3d;
+}
+        .map-location-point.active-region { background-color: var(--color-crimson-red); box-shadow: 0 0 15px var(--color-crimson-red);
+}
+        .map-location-point:hover { transform: scale(1.3); box-shadow: 0 0 20px var(--color-crimson-red);
+}
+
+        .location-info-panel {
+            position: absolute;
+            background: rgba(0,
+  0,
+  0,
+  0.8);
+            border: 1px solid var(--color-crimson-red);
+            border-radius: var(--border-radius-md);
+            padding: 15px;
+            color: var(--color-white);
+            font-size: 0.9em;
+            text-align: left;
+            box-shadow: 0 0 20px rgba(0,
+  0,
+  0,
+  0.7),
+  0 0 10px var(--color-crimson-red);
+            z-index: 4;
+            display: none;
+            max-width: 280px;
+            transform: translateZ(50px); /* Bring forward in 3D space */
+}
+        .location-info-panel strong { display: block; font-size: 1.2em; margin-bottom: 5px; color: var(--color-crimson-red);
+}
+        .location-info-panel span { display: block; margin-top: 3px; color: var(--color-light-gray);
+}
+/* --- AIR CONTROL SECTION --- */
+        #air-control-section {
+            text-align: center;
+}
+        .air-control-display {
+            position: relative;
+            width: 100%;
+            height: 70vh;
+            background-color: var(--color-black);
+            border: 2px solid var(--color-crimson-red);
+            border-radius: var(--border-radius-lg);
+            margin: 40px auto;
+            overflow: hidden;
+            box-shadow: 0 0 30px var(--color-crimson-red);
+}
+        .air-control-grid {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image:
+                linear-gradient(to right, rgba(255,
+  255,
+  255,
+  0.08) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,
+  255,
+  255,
+  0.08) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: panGrid 150s linear infinite;
+}
+        .main-radar {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%,
+  -50%);
+            width: 80%; height: 80%;
+            max-width: 600px; max-height: 600px;
+            border-radius: 50%;
+            border: 3px solid var(--color-white);
+            background: radial-gradient(circle, rgba(255,
+  255,
+  255,
+  0.05) 0%, rgba(220,
+  20,
+  60,
+  0.4) 100%);
+            box-shadow: 0 0 40px var(--color-crimson-red);
+            overflow: hidden;
+}
+        .main-radar: :before {
+            content: '';
+            position: absolute; top: 50%; left: 50%;
+            width: 100%; height: 100%;
+            transform-origin: 0% 0%;
+            background: linear-gradient(90deg, rgba(220,
+  20,
+  60,
+  0) 0%, rgba(220,
+  20,
+  60,
+  0.8) 50%, rgba(220,
+  20,
+  60,
+  0) 100%);
+            opacity: 0.7;
+            animation: radarSweep 3s linear infinite;
+}
+        .aircraft-indicator {
+            position: absolute;
+            width: 18px; height: 18px;
+            background-color: var(--color-crimson-red);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--color-crimson-red);
+            animation: markerPulse 1.5s infinite alternate;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 0.8em; color: var(--color-white); font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+}
+        .aircraft-indicator:hover { transform: scale(1.2);
+}
+/* Animated flight paths using custom properties for start/end */
+        .aircraft-indicator:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; --start-x: 10%; --start-y: 10%; --end-x: 90%; --end-y: 90%; animation-name: flyPath1;
+}
+        .aircraft-indicator:nth-child(2) { top: 80%; left: 20%; animation-delay: 5s; animation-duration: 25s; --start-x: 80%; --start-y: 20%; --end-x: 5%; --end-y: 70%; animation-name: flyPath2;
+}
+        .aircraft-indicator:nth-child(3) { top: 30%; left: 90%; animation-delay: 10s; animation-duration: 18s; --start-x: 30%; --start-y: 95%; --end-x: 70%; --end-y: 5%; animation-name: flyPath3;
+}
+        .aircraft-indicator:nth-child(4) { top: 60%; left: 5%; animation-delay: 15s; animation-duration: 22s; --start-x: 5%; --start-y: 60%; --end-x: 95%; --end-y: 30%; animation-name: flyPath4;
+}
+        .aircraft-info-panel {
+            position: absolute;
+            background: rgba(0,
+  0,
+  0,
+  0.8);
+            border: 1px solid var(--color-crimson-red);
+            border-radius: var(--border-radius-md);
+            padding: 15px;
+            color: var(--color-white);
+            font-size: 0.9em;
+            text-align: left;
+            box-shadow: 0 0 15px var(--color-crimson-red);
+            z-index: 10;
+            display: none;
+            max-width: 250px;
+}
+        .aircraft-info-panel strong { display: block; font-size: 1.2em; margin-bottom: 5px; color: var(--color-crimson-red);
+}
+        .aircraft-info-panel span { display: block; margin-top: 3px; color: var(--color-light-gray);
+}
+/* --- ARCHIVES / HISTORY SECTION --- */
+        #archives-section {
+            text-align: center;
+}
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px 0;
+}
+        .timeline: :before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background-color: var(--color-white);
+            transform: translateX(-50%);
+}
+        .timeline-event {
+            position: relative;
+            margin-bottom: 60px;
+            padding: 25px;
+            background: var(--color-dark-gray);
+            border: 1px solid var(--color-white);
+            border-radius: var(--border-radius-lg);
+            box-shadow: 0 0 15px rgba(0,
+  0,
+  0,
+  0.5);
+            cursor: pointer;
+            transition: all var(--transition-speed) ease;
+}
+        .timeline-event:nth-child(odd) {
+            left: 0;
+            transform: translateX(-50%);
+            text-align: right;
+            border-left: 5px solid var(--color-crimson-red);
+            margin-left: -15px;
+}
+        .timeline-event:nth-child(even) {
+            right: 0;
+            transform: translateX(50%);
+            text-align: left;
+            border-right: 5px solid var(--color-crimson-red);
+            margin-right: -15px;
+}
+        .timeline-event:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 25px var(--color-crimson-red);
+            border-color: var(--color-crimson-red);
+}
+        .timeline-event .year {
+            font-family: var(--font-family-title);
+            font-size: 1.6em;
+            font-weight: 700;
+            color: var(--color-crimson-red);
+            margin-bottom: 10px;
+}
+        .timeline-event .t... (68 KB left)
