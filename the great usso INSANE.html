@@ -1,0 +1,2536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE UNITED STATES OF SEX OFFENDERS - Central Digital Headquarters</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@404;700&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- GLOBAL & BASE STYLES --- */
+        :root {
+            --color-black: #000000;
+            --color-white: #FFFFFF;
+            --color-crimson-red: #DC143C; /* Dominant accent red */
+            --color-dark-gray: #333333;
+            --color-light-gray: #CCCCCC;
+            --color-text-secondary: #AAAAAA;
+
+            --font-family-title: 'Oswald', sans-serif;
+            --font-family-body: 'Montserrat', sans-serif;
+            --transition-speed: 0.4s;
+            --border-radius-lg: 12px;
+            --border-radius-md: 8px;
+            --z-index-nav: 100;
+            --z-index-modal: 1000;
+            --z-index-intro: 2000;
+        }
+
+        /* Basic Reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font-family-body);
+            background-color: var(--color-black);
+            color: var(--color-white);
+            overflow: hidden; /* Controlled by JS for main content */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            cursor: default;
+            position: relative;
+        }
+
+        a {
+            color: var(--color-crimson-red);
+            text-decoration: none;
+            transition: color var(--transition-speed);
+        }
+        a:hover {
+            color: var(--color-white);
+            text-shadow: 0 0 5px var(--color-crimson-red);
+        }
+
+        button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--color-white);
+            font-family: var(--font-family-body);
+            font-size: 1em;
+            padding: 0;
+        }
+
+        /* Scrollbar Styling (Modern Browsers) */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--color-dark-gray); }
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-crimson-red);
+            border-radius: 4px;
+            transition: background var(--transition-speed);
+        }
+        ::-webkit-scrollbar-thumb:hover { background: var(--color-white); }
+
+
+        /* --- USSO EMBLEM (SHARED STYLES) --- */
+        .usso-emblem {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 80px; /* Base size */
+            height: 80px; /* Base size */
+            background-color: var(--color-crimson-red);
+            border: 2px solid var(--color-white);
+            position: relative;
+            overflow: hidden;
+            transition: all var(--transition-speed) ease;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        .usso-emblem::before,
+        .usso-emblem::after {
+            content: '';
+            position: absolute;
+            background-color: var(--color-white);
+        }
+
+        /* Emblem Design - Symmetrical, Aggressive, Elegant */
+        .usso-emblem::before {
+            width: 20%;
+            height: 120%;
+            transform: rotate(45deg);
+        }
+        .usso-emblem::after {
+            width: 20%;
+            height: 120%;
+            transform: rotate(-45deg);
+        }
+
+        .usso-emblem-center {
+            position: absolute;
+            width: 40%;
+            height: 40%;
+            background-color: var(--color-black);
+            border: 2px solid var(--color-crimson-red);
+            transform: rotate(45deg);
+            z-index: 1;
+        }
+        .usso-emblem-text {
+            position: absolute;
+            font-family: var(--font-family-title);
+            font-size: 0.9em;
+            font-weight: 700;
+            color: var(--color-white);
+            z-index: 2;
+        }
+
+        .usso-emblem.small { width: 50px; height: 50px; }
+        .usso-emblem.small .usso-emblem-text { font-size: 0.7em; }
+        .usso-emblem.small .usso-emblem-center { width: 30%; height: 30%; }
+
+        /* --- SOUND & PERFORMANCE CONTROLS --- */
+        .controls-panel {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: var(--z-index-modal);
+            display: flex;
+            gap: 10px;
+            flex-direction: column;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: var(--border-radius-md);
+            border: 1px solid var(--color-crimson-red);
+        }
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8em;
+            color: var(--color-text-secondary);
+        }
+        .control-group input[type="range"] {
+            width: 80px;
+            -webkit-appearance: none;
+            height: 3px;
+            background: var(--color-dark-gray);
+            border-radius: 2px;
+            outline: none;
+            cursor: pointer;
+        }
+        .control-group input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--color-crimson-red);
+            cursor: pointer;
+            box-shadow: 0 0 5px var(--color-crimson-red);
+        }
+        .control-group button {
+            background: var(--color-dark-gray);
+            color: var(--color-light-gray);
+            border: 1px solid var(--color-crimson-red);
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 0.75em;
+            transition: background var(--transition-speed), color var(--transition-speed);
+        }
+        .control-group button:hover {
+            background: var(--color-crimson-red);
+            color: var(--color-white);
+        }
+
+        /* --- INTRO SEQUENCE --- */
+        #intro-sequence {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--color-black);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: var(--z-index-intro);
+            opacity: 1;
+            transition: opacity 2s ease-out;
+            pointer-events: all;
+            overflow: hidden;
+        }
+        #intro-sequence.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .intro-point-light {
+            width: 0;
+            height: 0;
+            background-color: var(--color-crimson-red);
+            border-radius: 50%;
+            box-shadow: 0 0 100px var(--color-crimson-red);
+            animation: expandPoint 3s ease-out 1s forwards;
+            opacity: 0;
+        }
+        @keyframes expandPoint {
+            0% { width: 0; height: 0; opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+            100% { width: 100px; height: 100px; opacity: 0.8; }
+        }
+
+        .intro-globe-container {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            opacity: 0;
+            animation: fadeIn 2s ease-out 4s forwards;
+        }
+        .intro-globe-frame {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: rotateGlobe 40s linear infinite;
+            transform-style: preserve-3d;
+        }
+        .intro-globe-territory {
+            position: absolute;
+            width: 80%; /* Fictional continent size */
+            height: 80%;
+            background-color: var(--color-dark-gray); /* Placeholder landmass */
+            border-radius: 50%;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            opacity: 0;
+            animation: fadeIn 2s ease-out 5s forwards;
+        }
+        .intro-usso-highlight {
+            position: absolute;
+            width: 60%;
+            height: 60%;
+            background-color: var(--color-crimson-red);
+            border-radius: 50%;
+            filter: blur(20px);
+            box-shadow: 0 0 80px var(--color-crimson-red);
+            opacity: 0;
+            animation: fadeIn 2s ease-out 6s forwards, pulseRed 3s infinite alternate;
+        }
+        .intro-city-lights {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            animation: fadeIn 2s ease-out 6.5s forwards;
+        }
+        .intro-city-light {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background-color: var(--color-white);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--color-white);
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+            animation-delay: var(--light-delay);
+        }
+
+        .intro-text-overlay {
+            position: absolute;
+            text-align: center;
+            font-family: var(--font-family-title);
+            font-weight: 700;
+            letter-spacing: 2px;
+            z-index: 10;
+            opacity: 0;
+            text-shadow: 0 0 20px rgba(0,0,0,0.8);
+        }
+        #intro-title-full {
+            font-size: 5em;
+            color: var(--color-white);
+            animation: fadeInScale 1.5s ease-out 9s forwards;
+        }
+        #intro-title-abbr {
+            font-size: 2.5em;
+            color: var(--color-crimson-red);
+            margin-top: 10px;
+            animation: fadeInScale 1.5s ease-out 9.5s forwards;
+        }
+        #intro-title-great {
+            font-size: 1.8em;
+            color: var(--color-white);
+            margin-top: 20px;
+            animation: fadeInScale 1.5s ease-out 10s forwards;
+        }
+
+        #intro-final-message {
+            position: absolute;
+            bottom: 5vh;
+            text-align: center;
+            font-size: 1.2em;
+            color: var(--color-light-gray);
+            line-height: 1.6;
+            opacity: 0;
+            animation: fadeIn 2s ease-out 13s forwards;
+            padding: 20px;
+            background: rgba(0,0,0,0.5);
+            border-radius: var(--border-radius-md);
+            border: 1px solid var(--color-crimson-red);
+        }
+        #intro-final-message strong {
+            display: block;
+            font-size: 1.8em;
+            color: var(--color-crimson-red);
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px var(--color-crimson-red);
+        }
+
+        /* --- MAIN PORTAL --- */
+        #main-portal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--color-black);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1s ease-out, visibility 0s 1s;
+            overflow: hidden; /* For initial state */
+            display: grid;
+            grid-template-areas:
+                "nav header"
+                "nav content";
+            grid-template-columns: 250px 1fr;
+            grid-template-rows: auto 1fr;
+            pointer-events: none;
+            perspective: 1000px;
+        }
+        #main-portal.active {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 1s ease-out;
+            pointer-events: all;
+            overflow: hidden; /* Control content overflow later */
+        }
+        #main-portal.active #portal-content {
+            overflow-y: auto; /* Allow scrolling for content */
+        }
+
+        /* --- NAVIGATION --- */
+        #main-nav {
+            grid-area: nav;
+            background-color: var(--color-black);
+            border-right: 1px solid var(--color-dark-gray);
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            box-shadow: 5px 0 20px rgba(0,0,0,0.5);
+            z-index: var(--z-index-nav);
+            transform: translateX(-100%);
+            animation: slideInLeftNav 0.8s ease-out 1.5s forwards;
+            opacity: 0;
+        }
+        .nav-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .nav-header .usso-emblem {
+            width: 60px;
+            height: 60px;
+        }
+        .nav-header .usso-emblem .usso-emblem-text { font-size: 0.8em; }
+        .nav-header .nav-title {
+            font-family: var(--font-family-title);
+            font-size: 1.5em;
+            font-weight: 700;
+            color: var(--color-white);
+            letter-spacing: 1px;
+            text-shadow: 0 0 5px rgba(255,255,255,0.2);
+        }
+
+        #main-nav button {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--color-dark-gray);
+            color: var(--color-light-gray);
+            padding: 12px 18px;
+            text-align: left;
+            font-family: var(--font-family-body);
+            font-size: 1em;
+            border-radius: var(--border-radius-md);
+            transition: all var(--transition-speed) ease;
+            position: relative;
+            overflow: hidden;
+            outline: none;
+        }
+        #main-nav button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(220, 20, 60, 0.15);
+            transition: left var(--transition-speed) ease;
+            z-index: 0;
+        }
+        #main-nav button:hover::before {
+            left: 0;
+        }
+        #main-nav button span {
+            position: relative;
+            z-index: 1;
+        }
+        #main-nav button:hover {
+            color: var(--color-white);
+            border-color: var(--color-crimson-red);
+            transform: translateX(5px);
+            box-shadow: 0 0 10px var(--color-crimson-red);
+        }
+        #main-nav button.active {
+            background-color: var(--color-crimson-red);
+            color: var(--color-white);
+            font-weight: 700;
+            border-color: var(--color-crimson-red);
+            box-shadow: 0 0 15px var(--color-crimson-red);
+        }
+
+        /* --- HEADER --- */
+        #portal-header {
+            grid-area: header;
+            background-color: var(--color-black);
+            border-bottom: 1px solid var(--color-dark-gray);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            z-index: var(--z-index-nav);
+            transform: translateY(-100%);
+            animation: slideInTopHeader 0.8s ease-out 1.7s forwards;
+            opacity: 0;
+        }
+        .header-title {
+            font-family: var(--font-family-title);
+            font-size: 2.2em;
+            font-weight: 700;
+            color: var(--color-white);
+            letter-spacing: 1.5px;
+            text-shadow: 0 0 10px rgba(255,255,255,0.3);
+        }
+        .header-status {
+            font-size: 0.9em;
+            color: var(--color-crimson-red);
+            background-color: rgba(220, 20, 60, 0.1);
+            padding: 8px 15px;
+            border-radius: var(--border-radius-md);
+            border: 1px solid var(--color-crimson-red);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+        }
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background-color: var(--color-crimson-red);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--color-crimson-red);
+            animation: pulseRed 1.5s infinite alternate;
+        }
+
+        /* --- MAIN CONTENT AREA --- */
+        #portal-content {
+            grid-area: content;
+            background-color: var(--color-black);
+            padding: 40px;
+            overflow-y: auto; /* Controlled by JS for active state */
+            position: relative;
+            transform: translateX(100%);
+            animation: slideInRightContent 0.8s ease-out 1.9s forwards;
+            opacity: 0;
+        }
+        .content-section {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .content-section.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .section-header {
+            font-family: var(--font-family-title);
+            font-size: 2.5em;
+            font-weight: 700;
+            color: var(--color-white);
+            margin-bottom: 40px;
+            text-shadow: 0 0 15px rgba(255,255,255,0.4);
+            border-bottom: 2px solid var(--color-crimson-red);
+            padding-bottom: 15px;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        /* --- MAIN HERO (After Intro) --- */
+        #hero-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 120px); /* Adjust for nav/header height */
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-globe-wrapper {
+            width: 500px;
+            height: 500px;
+            position: relative;
+            margin: 40px auto;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            animation: rotateGlobe 60s linear infinite;
+        }
+        .hero-globe-surface {
+            width: 100%;
+            height: 100%;
+            background-color: var(--color-dark-gray);
+            border-radius: 50%;
+            box-shadow: 0 0 50px rgba(0,0,0,0.8), inset 0 0 50px rgba(255,255,255,0.05);
+            position: absolute;
+            top: 0; left: 0;
+            transform-style: preserve-3d;
+            overflow: hidden;
+        }
+        .hero-globe-usso-territory {
+            position: absolute;
+            top: 20%; left: 30%; /* Example position */
+            width: 50%;
+            height: 60%;
+            background-color: var(--color-crimson-red);
+            filter: blur(25px);
+            border-radius: 50%;
+            box-shadow: 0 0 100px var(--color-crimson-red);
+            animation: pulseRed 4s infinite alternate;
+        }
+        .hero-globe-city-light {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background-color: var(--color-white);
+            border-radius: 50%;
+            box-shadow: 0 0 12px var(--color-white);
+            opacity: 0.8;
+            animation: lightFlicker 2s infinite alternate var(--light-delay);
+        }
+        .hero-globe-city-light:nth-child(1) { top: 25%; left: 40%; --light-delay: 0.2s; }
+        .hero-globe-city-light:nth-child(2) { top: 55%; left: 70%; --light-delay: 0.7s; }
+        .hero-globe-city-light:nth-child(3) { top: 70%; left: 20%; --light-delay: 1.1s; }
+        .hero-globe-city-light:nth-child(4) { top: 40%; left: 10%; --light-delay: 0.5s; }
+        .hero-globe-city-light:nth-child(5) { top: 10%; left: 80%; --light-delay: 1.5s; }
+
+        .hero-text {
+            font-family: var(--font-family-title);
+            margin-top: 20px;
+        }
+        .hero-text h1 {
+            font-size: 3.5em;
+            color: var(--color-white);
+            text-shadow: 0 0 15px rgba(255,255,255,0.4);
+            letter-spacing: 2px;
+        }
+        .hero-text h2 {
+            font-size: 2em;
+            color: var(--color-crimson-red);
+            margin-top: 5px;
+            text-shadow: 0 0 10px var(--color-crimson-red);
+        }
+        .hero-text p {
+            font-size: 1.2em;
+            color: var(--color-light-gray);
+            margin-top: 15px;
+            font-style: italic;
+        }
+        .hero-buttons {
+            margin-top: 40px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .hero-buttons button {
+            background: var(--color-dark-gray);
+            border: 1px solid var(--color-crimson-red);
+            padding: 15px 30px;
+            border-radius: var(--border-radius-md);
+            font-family: var(--font-family-title);
+            font-size: 1.1em;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: var(--color-white);
+            transition: all var(--transition-speed) ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        .hero-buttons button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(220, 20, 60, 0.3);
+            transition: left var(--transition-speed) ease;
+        }
+        .hero-buttons button:hover::before {
+            left: 0;
+        }
+        .hero-buttons button:hover {
+            border-color: var(--color-white);
+            color: var(--color-crimson-red);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 0 20px var(--color-crimson-red);
+        }
+
+        /* --- NATIONAL IDENTITY SECTION --- */
+        #national-identity-section {
+            text-align: center;
+        }
+        .national-identity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .identity-card {
+            background: var(--color-dark-gray);
+            border: 1px solid var(--color-crimson-red);
+            border-radius: var(--border-radius-lg);
+            padding: 30px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+        }
+        .identity-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 0 25px var(--color-crimson-red);
+        }
+        .identity-card strong {
+            display: block;
+            font-family: var(--font-family-title);
+            font-size: 1.8em;
+            color: var(--color-white);
+            margin-bottom: 10px;
+        }
+        .identity-card span {
+            font-size: 1em;
+            color: var(--color-text-secondary);
+        }
+        .national-flag-display {
+            width: 400px;
+            height: 250px;
+            margin: 50px auto;
+            background-color: var(--color-black);
+            border: 2px solid var(--color-white);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.5s ease;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            perspective: 1000px;
+            transform-style: preserve-3d;
+        }
+        .national-flag-display:hover {
+            transform: translateY(-10px) rotateY(5deg);
+        }
+        .flag-content {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0; left: 0;
+            background-image:
+                linear-gradient(to right, var(--color-crimson-red) 33%, var(--color-white) 33%, var(--color-white) 66%, var(--color-black) 66%);
+            animation: flagWave 6s infinite alternate ease-in-out;
+            transform-origin: 0% 50%;
+        }
+        .flag-emblem-overlay {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            filter: drop-shadow(0 0 10px rgba(0,0,0,0.7));
+            transition: opacity var(--transition-speed) ease;
+        }
+        .flag-emblem-overlay .usso-emblem {
+            width: 100%; height: 100%;
+            border-width: 4px;
+            background-color: transparent;
+            box-shadow: none;
+        }
+        .flag-emblem-overlay .usso-emblem::before,
+        .flag-emblem-overlay .usso-emblem::after { background-color: var(--color-white); }
+        .flag-emblem-overlay .usso-emblem-center { background-color: var(--color-black); border-color: var(--color-crimson-red); }
+        .flag-emblem-overlay .usso-emblem-text { color: var(--color-white); font-size: 1em; }
+
+        /* Flag Info Panel (Modal) */
+        .flag-info-panel, .timeline-info-panel, .archive-document-viewer {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            background: var(--color-black);
+            border: 2px solid var(--color-crimson-red);
+            border-radius: var(--border-radius-lg);
+            padding: 50px;
+            max-width: 700px;
+            max-height: 90vh;
+            overflow-y: auto;
+            z-index: var(--z-index-modal);
+            box-shadow: 0 0 40px rgba(0,0,0,0.7), 0 0 30px var(--color-crimson-red);
+            display: none;
+            opacity: 0;
+            transition: all 0.6s ease-out;
+        }
+        .flag-info-panel.active, .timeline-info-panel.active, .archive-document-viewer.active {
+            display: block;
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        .modal-title {
+            font-family: var(--font-family-title);
+            font-size: 2.8em;
+            color: var(--color-crimson-red);
+            margin-bottom: 25px;
+            text-shadow: 0 0 15px var(--color-crimson-red);
+        }
+        .modal-content p {
+            font-size: 1.1em;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            color: var(--color-light-gray);
+        }
+        .modal-content strong {
+            color: var(--color-white);
+            font-weight: 700;
+        }
+        .modal-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--color-dark-gray);
+            color: var(--color-white);
+            border: 1px solid var(--color-crimson-red);
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            font-size: 1.5em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all var(--transition-speed);
+        }
+        .modal-close-btn:hover {
+            background: var(--color-crimson-red);
+            transform: scale(1.1);
+        }
+
+        /* --- LEADERSHIP SECTION --- */
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 35px;
+            margin-top: 40px;
+        }
+        .leader-card {
+            background: var(--color-dark-gray);
+            border: 2px solid var(--color-black);
+            border-radius: var(--border-radius-lg);
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0,0,0,0.6);
+            position: relative;
+            overflow: hidden;
+            transition: all var(--transition-speed) ease;
+            cursor: pointer;
+        }
+        .leader-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            border-color: var(--color-crimson-red);
+            box-shadow: 0 0 30px var(--color-crimson-red);
+        }
+        .leader-card-bg-glow {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at center, rgba(220, 20, 60, 0.2) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity var(--transition-speed) ease;
+        }
+        .leader-card:hover .leader-card-bg-glow { opacity: 1; }
+        .leader-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: var(--color-black);
+            border: 3px solid var(--color-white);
+            margin: 0 auto 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: var(--font-family-title);
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--color-crimson-red);
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+        .leader-avatar img {
+            width: 100%; height: 100%; object-fit: cover; border-radius: 50%;
+        }
+        .leader-name {
+            font-family: var(--font-family-title);
+            font-size: 2.2em;
+            color: var(--color-white);
+            margin-bottom: 5px;
+            text-shadow: 0 0 10px rgba(255,255,255,0.3);
+            position: relative; z-index: 1;
+        }
+        .leader-title {
+            font-size: 1.1em;
+            color: var(--color-crimson-red);
+            margin-bottom: 15px;
+            position: relative; z-index: 1;
+        }
+        .leader-description {
+            font-size: 0.95em;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            min-height: 80px; /* To prevent layout shift on hover */
+            opacity: 0;
+            max-height: 0;
+            transition: opacity var(--transition-speed) ease, max-height var(--transition-speed) ease;
+            overflow: hidden;
+            position: relative; z-index: 1;
+        }
+        .leader-card:hover .leader-description {
+            opacity: 1;
+            max-height: 150px; /* Adjust as needed */
+        }
+        /* Specific leader styling */
+        .leader-card.president .leader-avatar { border-color: var(--color-crimson-red); }
+        .leader-card.president .leader-name { font-size: 2.8em; text-shadow: 0 0 15px var(--color-crimson-red); }
+        .leader-card.president .leader-title { font-size: 1.5em; color: var(--color-white); }
+        .leader-card.private .leader-title { color: var(--color-white); }
+        .leader-card.private .leader-description { color: var(--color-crimson-red); font-weight: bold; }
+
+        /* Air Control Ahmad specific visuals */
+        .leader-card.air-control .leader-description {
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        .radar-mini {
+            width: 100px; height: 100px; border-radius: 50%;
+            border: 2px solid var(--color-white);
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, rgba(220, 20, 60, 0.3) 100%);
+            position: relative; overflow: hidden; margin-top: 10px;
+            display: none;
+        }
+        .leader-card.air-control:hover .radar-mini { display: block; }
+        .radar-sweep-mini {
+            position: absolute; top: 50%; left: 50%; width: 100%; height: 100%;
+            transform-origin: 0% 0%;
+            background: linear-gradient(90deg, rgba(220, 20, 60, 0) 0%, rgba(220, 20, 60, 0.8) 50%, rgba(220, 20, 60, 0) 100%);
+            opacity: 0.6; animation: radarSweep 2s linear infinite;
+        }
+        .aircraft-marker-mini {
+            position: absolute; width: 6px; height: 6px; background-color: var(--color-white);
+            border-radius: 50%; box-shadow: 0 0 5px var(--color-white);
+            animation: markerPulse 1s infinite alternate;
+        }
+        .aircraft-marker-mini:nth-child(1) { top: 20%; left: 70%; animation-delay: 0.2s; }
+        .aircraft-marker-mini:nth-child(2) { top: 50%; left: 30%; animation-delay: 0.7s; }
+        .aircraft-marker-mini:nth-child(3) { top: 80%; left: 50%; animation-delay: 1.1s; }
+        .airspace-status-mini {
+            font-size: 0.8em; color: var(--color-crimson-red); margin-top: 10px;
+            display: none;
+        }
+        .leader-card.air-control:hover .airspace-status-mini { display: block; }
+
+
+        /* --- GOVERNMENT SECTION --- */
+        #government-section {
+            text-align: center;
+        }
+        .government-hierarchy {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+        .hierarchy-level {
+            position: relative;
+            padding: 20px 0;
+            min-width: 250px;
+            text-align: center;
+        }
+        .hierarchy-card-gov {
+            background: var(--color-dark-gray);
+            border: 1px solid var(--color-white);
+            padding: 15px 25px;
+            border-radius: var(--border-radius-md);
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            font-family: var(--font-family-title);
+            font-size: 1.3em;
+            color: var(--color-white);
+            font-weight: 700;
+            transition: all var(--transition-speed);
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+        }
+        .hierarchy-card-gov:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-crimson-red);
+            box-shadow: 0 0 15px var(--color-crimson-red);
+            color: var(--color-crimson-red);
+        }
+        .hierarchy-line {
+            position: absolute;
+            width: 2px;
+            height: 40px;
+            background-color: var(--color-white);
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -20px;
+            z-index: 0;
+        }
+        .hierarchy-line-horizontal {
+            position: absolute;
+            height: 2px;
+            background-color: var(--color-white);
+            width: calc(100% + 40px); /* Extends beyond for connecting branches */
+            left: -20px;
+            top: -10px;
+            z-index: 0;
+        }
+        .hierarchy-department-row {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+            position: relative;
+        }
+        .hierarchy-department-row::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            width: 2px;
+            height: 20px;
+            background-color: var(--color-white);
+            transform: translateX(-50%);
+        }
+        .hierarchy-department-card {
+            font-family: var(--font-family-body);
+            font-size: 0.95em;
+            color: var(--color-light-gray);
+            background: var(--color-dark-gray);
+            border: 1px solid var(--color-dark-gray);
+            padding: 10px 15px;
+            border-radius: var(--border-radius-md);
+            transition: all var(--transition-speed);
+            cursor: pointer;
+        }
+        .hierarchy-department-card:hover {
+            border-color: var(--color-crimson-red);
+            box-shadow: 0 0 8px var(--color-crimson-red);
+            color: var(--color-white);
+        }
+
+        /* --- CAPITAL CITY SECTION --- */
+        #capital-section {
+            position: relative;
+            height: 80vh;
+            background-color: var(--color-black);
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            box-shadow: inset 0 0 50px rgba(0,0,0,0.8);
+            margin-top: 40px;
+        }
+        .capital-skyline-bg {
+            position: absolute;
+            bottom: 0;
+            width: 150%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 800"><rect x="0" y="400" width="1500" height="400" fill="%23000000"/><path d="M0 800 L50 300 L100 800 Z M120 800 L160 100 L200 800 Z M250 800 L300 450 L350 800 Z M380 800 L420 200 L460 800 Z M500 800 L550 600 L600 800 Z M620 800 L660 50 L700 800 Z M750 800 L800 350 L850 800 Z M880 800 L920 700 L960 800 Z M1000 800 L1050 250 L1100 800 Z M1120 800 L1170 550 L1220 800 Z M1250 800 L1300 150 L1350 800 Z M1400 800 L1450 400 L1500 800 Z" fill="%231a1a1a"/><path d="M0 800 L40 400 L80 800 Z M110 800 L140 150 L170 800 Z M230 800 L270 500 L310 800 Z M360 800 L390 250 L420 800 Z M480 800 L520 650 L560 800 Z M600 800 L630 100 L660 800 Z M730 800 L770 450 L810 800 Z M860 800 L890 750 L920 800 Z M980 800 L1020 300 L1060 800 Z M1100 800 L1140 600 L1180 800 Z M1230 800 L1270 200 L1310 800 Z M1380 800 L1420 450 L1460 800 Z" fill="%23333333"/><rect x="655" y="50" width="20" height="700" fill="%23FFFFFF" opacity="0.1"/><circle cx="665" cy="50" r="15" fill="%23DC143C"/></svg>');
+            background-size: cover;
+            background-position: center bottom;
+            animation: moveCapitalSkyline 60s linear infinite alternate;
+            filter: brightness(0.7);
+        }
+        .capital-light-glow {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 50%;
+            background: radial-gradient(circle at bottom, rgba(220, 20, 60, 0.4) 0%, transparent 70%);
+            animation: pulseRed 8s infinite alternate;
+            pointer-events: none;
+        }
+        .flying-vehicle-light {
+            position: absolute;
+            width: 25px;
+            height: 3px;
+            background-color: var(--color-white);
+            box-shadow: 0 0 10px var(--color-white);
+            border-radius: 2px;
+            opacity: 0.8;
+            animation: flyVehicle 15s linear infinite var(--delay);
+        }
+        .flying-vehicle-light:nth-child(1) { top: 20%; left: -10%; --delay: 0s; transform: rotateZ(5deg); }
+        .flying-vehicle-light:nth-child(2) { top: 40%; left: -30%; --delay: 5s; animation-duration: 20s; transform: rotateZ(-10deg); }
+        .flying-vehicle-light:nth-child(3) { top: 60%; left: -60%; --delay: 10s; animation-duration: 10s; transform: rotateZ(15deg); }
+
+        .capital-location-grid {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 0;
+            pointer-events: none;
+        }
+        .capital-location-overlay {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: var(--font-family-title);
+            font-size: 1.5em;
+            color: var(--color-white);
+            text-shadow: 0 0 10px rgba(0,0,0,0.8);
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(0,0,0,0.2);
+            transition: all var(--transition-speed);
+            pointer-events: all;
+            cursor: pointer;
+        }
+        .capital-location-overlay:hover {
+            background: rgba(220, 20, 60, 0.3);
+            border-color: var(--color-crimson-red);
+            color: var(--color-crimson-red);
+            box-shadow: inset 0 0 20px var(--color-crimson-red);
+        }
+
+        /* --- CONTINENT / MAP SECTION --- */
+        #territories-section {
+            text-align: center;
+            position: relative;
+        }
+        .continent-map-wrapper {
+            position: relative;
+            width: 100%;
+            height: 70vh;
+            background-color: var(--color-black);
+            border: 2px solid var(--color-crimson-red);
+            border-radius: var(--border-radius-lg);
+            margin: 40px auto;
+            overflow: hidden;
+            box-shadow: 0 0 30px var(--color-crimson-red);
+            cursor: grab;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
+        }
+        .continent-map-wrapper.dragging {
+            cursor: grabbing;
+        }
+        .map-grid-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image:
+                linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            animation: panGrid 100s linear infinite;
+            z-index: 1;
+        }
+        .fictional-continent {
+            position: absolute;
+            width: 90%; height: 90%;
+            background-color: var(--color-dark-gray); /* Base landmass color */
+            border-radius: 5%; /* Placeholder shape for continent */
+            box-shadow: 0 0 50px rgba(0,0,0,0.7);
+            z-index: 2;
+            transform: scale(1);
+            transition: transform 0.5s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+        .map-location-point {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--color-white);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--color-white);
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+            z-index: 3;
+            transform-style: preserve-3d;
+        }
+        .map-location-point.active-region { background-color: var(--color-crimson-red); box-shadow: 0 0 15px var(--color-crimson-red); }
+        .map-location-point:hover { transform: scale(1.3); box-shadow: 0 0 20px var(--color-crimson-red); }
+
+        .location-info-panel {
+            position: absolute;
+            background: rgba(0,0,0,0.8);
+            border: 1px solid var(--color-crimson-red);
+            border-radius: var(--border-radius-md);
+            padding: 15px;
+            color: var(--color-white);
+            font-size: 0.9em;
+            text-align: left;
+            box-shadow: 0 0 20px rgba(0,0,0,0.7), 0 0 10px var(--color-crimson-red);
+            z-index: 4;
+            display: none;
+            max-width: 280px;
+            transform: translateZ(50px); /* Bring forward in 3D space */
+        }
+        .location-info-panel strong { display: block; font-size: 1.2em; margin-bottom: 5px; color: var(--color-crimson-red); }
+        .location-info-panel span { display: block; margin-top: 3px; color: var(--color-light-gray); }
+
+        /* --- AIR CONTROL SECTION --- */
+        #air-control-section {
+            text-align: center;
+        }
+        .air-control-display {
+            position: relative;
+            width: 100%;
+            height: 70vh;
+            background-color: var(--color-black);
+            border: 2px solid var(--color-crimson-red);
+            border-radius: var(--border-radius-lg);
+            margin: 40px auto;
+            overflow: hidden;
+            box-shadow: 0 0 30px var(--color-crimson-red);
+        }
+        .air-control-grid {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image:
+                linear-gradient(to right, rgba(255,255,255,0.08) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.08) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: panGrid 150s linear infinite;
+        }
+        .main-radar {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%; height: 80%;
+            max-width: 600px; max-height: 600px;
+            border-radius: 50%;
+            border: 3px solid var(--color-white);
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, rgba(220, 20, 60, 0.4) 100%);
+            box-shadow: 0 0 40px var(--color-crimson-red);
+            overflow: hidden;
+        }
+        .main-radar::before {
+            content: '';
+            position: absolute; top: 50%; left: 50%;
+            width: 100%; height: 100%;
+            transform-origin: 0% 0%;
+            background: linear-gradient(90deg, rgba(220, 20, 60, 0) 0%, rgba(220, 20, 60, 0.8) 50%, rgba(220, 20, 60, 0) 100%);
+            opacity: 0.7;
+            animation: radarSweep 3s linear infinite;
+        }
+        .aircraft-indicator {
+            position: absolute;
+            width: 18px; height: 18px;
+            background-color: var(--color-crimson-red);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--color-crimson-red);
+            animation: markerPulse 1.5s infinite alternate;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 0.8em; color: var(--color-white); font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        .aircraft-indicator:hover { transform: scale(1.2); }
+        /* Animated flight paths using custom properties for start/end */
+        .aircraft-indicator:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; --start-x: 10%; --start-y: 10%; --end-x: 90%; --end-y: 90%; animation-name: flyPath1; }
+        .aircraft-indicator:nth-child(2) { top: 80%; left: 20%; animation-delay: 5s; animation-duration: 25s; --start-x: 80%; --start-y: 20%; --end-x: 5%; --end-y: 70%; animation-name: flyPath2; }
+        .aircraft-indicator:nth-child(3) { top: 30%; left: 90%; animation-delay: 10s; animation-duration: 18s; --start-x: 30%; --start-y: 95%; --end-x: 70%; --end-y: 5%; animation-name: flyPath3; }
+        .aircraft-indicator:nth-child(4) { top: 60%; left: 5%; animation-delay: 15s; animation-duration: 22s; --start-x: 5%; --start-y: 60%; --end-x: 95%; --end-y: 30%; animation-name: flyPath4; }
+        .aircraft-info-panel {
+            position: absolute;
+            background: rgba(0,0,0,0.8);
+            border: 1px solid var(--color-crimson-red);
+            border-radius: var(--border-radius-md);
+            padding: 15px;
+            color: var(--color-white);
+            font-size: 0.9em;
+            text-align: left;
+            box-shadow: 0 0 15px var(--color-crimson-red);
+            z-index: 10;
+            display: none;
+            max-width: 250px;
+        }
+        .aircraft-info-panel strong { display: block; font-size: 1.2em; margin-bottom: 5px; color: var(--color-crimson-red); }
+        .aircraft-info-panel span { display: block; margin-top: 3px; color: var(--color-light-gray); }
+
+        /* --- ARCHIVES / HISTORY SECTION --- */
+        #archives-section {
+            text-align: center;
+        }
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background-color: var(--color-white);
+            transform: translateX(-50%);
+        }
+        .timeline-event {
+            position: relative;
+            margin-bottom: 60px;
+            padding: 25px;
+            background: var(--color-dark-gray);
+            border: 1px solid var(--color-white);
+            border-radius: var(--border-radius-lg);
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            cursor: pointer;
+            transition: all var(--transition-speed) ease;
+        }
+        .timeline-event:nth-child(odd) {
+            left: 0;
+            transform: translateX(-50%);
+            text-align: right;
+            border-left: 5px solid var(--color-crimson-red);
+            margin-left: -15px;
+        }
+        .timeline-event:nth-child(even) {
+            right: 0;
+            transform: translateX(50%);
+            text-align: left;
+            border-right: 5px solid var(--color-crimson-red);
+            margin-right: -15px;
+        }
+        .timeline-event:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 25px var(--color-crimson-red);
+            border-color: var(--color-crimson-red);
+        }
+        .timeline-event .year {
+            font-family: var(--font-family-title);
+            font-size: 1.6em;
+            font-weight: 700;
+            color: var(--color-crimson-red);
+            margin-bottom: 10px;
+        }
+        .timeline-event .title {
+            font-family: var(--font-family-body);
+            font-size: 1.2em;
+            color: var(--color-white);
+            margin-bottom: 5px;
+        }
+        .timeline-event .description {
+            font-size: 0.95em;
+            color: var(--color-text-secondary);
+        }
+
+        /* --- NEWS / LIVE STATUS --- */
+        #news-section {
+            text-align: center;
+        }
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .status-card {
+            background: var(--color-dark-gray);
+            border: 1px solid var(--color-white);
+            border-radius: var(--border-radius-lg);
+            padding: 30px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+            text-align: left;
+        }
+        .status-card-title {
+            font-family: var(--font-family-title);
+            font-size: 1.5em;
+            color: var(--color-white);
+            margin-bottom: 15px;
+        }
+        .status-indicator-live {
+            font-family: var(--font-family-title);
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--color-crimson-red);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .status-indicator-dot {
+            width: 12px; height: 12px;
+            background-color: var(--color-crimson-red);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--color-crimson-red);
+            animation: pulseRed 1.5s infinite alternate;
+        }
+        .news-feed {
+            margin-top: 50px;
+            text-align: left;
+        }
+        .news-item {
+            background: var(--color-dark-gray);
+            border: 1px solid var(--color-dark-gray);
+            border-left: 5px solid var(--color-crimson-red);
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border-radius: var(--border-radius-md);
+            transition: transform var(--transition-speed), border-color var(--transition-speed);
+        }
+        .news-item:hover {
+            transform: translateX(5px);
+            border-color: var(--color-white);
+        }
+        .news-item .headline {
+            font-size: 1.1em;
+            color: var(--color-white);
+            font-weight: 700;
+        }
+        .news-item .time {
+            font-size: 0.85em;
+            color: var(--color-text-secondary);
+            margin-top: 5px;
+        }
+        /* --- CLASSIFIED SECTION (EASTER EGG) --- */
+        #classified-section {
+            text-align: center;
+        }
+        .classified-alert {
+            font-family: var(--font-family-title);
+            font-size: 3em;
+            color: var(--color-crimson-red);
+            text-shadow: 0 0 20px var(--color-crimson-red);
+            animation: pulseRed 1s infinite alternate;
+            margin-bottom: 40px;
+        }
+        .classified-document {
+            background: var(--color-dark-gray);
+            border: 2px solid var(--color-crimson-red);
+            border-radius: var(--border-radius-lg);
+            padding: 50px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(0,0,0,0.7), 0 0 20px var(--color-crimson-red);
+            font-family: 'Courier New', monospace;
+            line-height: 1.8;
+            color: var(--color-text-secondary);
+            font-size: 1em;
+        }
+        .classified-document::before {
+            content: "TOP SECRET // USSO ADMINISTRATION";
+            position: absolute;
+            top: 20px; left: 20px;
+            font-family: var(--font-family-title);
+            font-size: 1.2em;
+            color: var(--color-crimson-red);
+            letter-spacing: 2px;
+            text-shadow: 0 0 5px var(--color-crimson-red);
+        }
+        .redacted {
+            background-color: var(--color-crimson-red);
+            color: var(--color-crimson-red);
+        }
+
+        /* --- General Modal for Alerts/Easter Eggs --- */
+        .general-modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+            z-index: var(--z-index-modal);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition-speed) ease;
+        }
+        .general-modal-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .general-modal-content {
+            background: var(--color-black);
+            border: 2px solid var(--color-crimson-red);
+            border-radius: var(--border-radius-lg);
+            padding: 40px;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(0,0,0,0.7), 0 0 20px var(--color-crimson-red);
+            transform: scale(0.9);
+            opacity: 0;
+            transition: transform var(--transition-speed) ease, opacity var(--transition-speed) ease;
+        }
+        .general-modal-overlay.active .general-modal-content {
+            transform: scale(1);
+            opacity: 1;
+        }
+        .general-modal-content h3 {
+            font-family: var(--font-family-title);
+            font-size: 2.5em;
+            color: var(--color-crimson-red);
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px var(--color-crimson-red);
+        }
+        .general-modal-content p {
+            font-size: 1.1em;
+            color: var(--color-light-gray);
+            margin-bottom: 30px;
+        }
+        .general-modal-content .modal-close-btn {
+            position: static;
+            margin: 0 auto;
+            display: block;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadeInScale {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        @keyframes rotateGlobe {
+            from { transform: rotateY(0deg); }
+            to { transform: rotateY(360deg); }
+        }
+        @keyframes pulseRed {
+            0% { box-shadow: 0 0 10px var(--color-crimson-red); }
+            100% { box-shadow: 0 0 30px var(--color-crimson-red); }
+        }
+        @keyframes lightFlicker {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { opacity: 0.8; }
+        }
+        @keyframes slideInLeftNav {
+            0% { transform: translateX(-100%); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes slideInTopHeader {
+            0% { transform: translateY(-100%); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes slideInRightContent {
+            0% { transform: translateX(100%); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes panGrid {
+            0% { background-position: 0 0; }
+            100% { background-position: 2000px 2000px; }
+        }
+        @keyframes radarSweep {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        @keyframes markerPulse {
+            0% { opacity: 0.7; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1.1); }
+        }
+        /* Custom Keyframes for Aircraft Fly Paths (needed for `animation-name`) */
+        @keyframes flyPath1 { 0% { top: var(--start-y); left: var(--start-x); } 100% { top: var(--end-y); left: var(--end-x); } }
+        @keyframes flyPath2 { 0% { top: var(--start-y); left: var(--start-x); } 100% { top: var(--end-y); left: var(--end-x); } }
+        @keyframes flyPath3 { 0% { top: var(--start-y); left: var(--start-x); } 100% { top: var(--end-y); left: var(--end-x); } }
+        @keyframes flyPath4 { 0% { top: var(--start-y); left: var(--start-x); } 100% { top: var(--end-y); left: var(--end-x); } }
+        @keyframes moveCapitalSkyline {
+            0% { background-position-x: 0; }
+            100% { background-position-x: -200px; }
+        }
+        @keyframes flyVehicle {
+            0% { left: -10%; }
+            100% { left: 110%; }
+        }
+        @keyframes flagWave {
+            0% { transform: rotateY(0deg); }
+            25% { transform: rotateY(3deg); }
+            50% { transform: rotateY(0deg); }
+            75% { transform: rotateY(-3deg); }
+            100% { transform: rotateY(0deg); }
+        }
+
+        /* --- REDUCED MOTION --- */
+        body.reduced-motion * {
+            animation-duration: 0.001ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.001ms !important;
+            scroll-behavior: auto !important;
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 1024px) {
+            #main-portal {
+                grid-template-areas:
+                    "header header"
+                    "nav content";
+                grid-template-columns: 200px 1fr;
+            }
+            .header-title { font-size: 1.8em; }
+            #main-nav { padding: 20px 15px; gap: 10px; }
+            #main-nav button { font-size: 0.9em; padding: 10px 15px; }
+            #portal-content { padding: 25px; }
+            .section-header { font-size: 2em; margin-bottom: 30px; }
+            .hero-globe-wrapper { width: 400px; height: 400px; }
+            .hero-text h1 { font-size: 2.8em; }
+            .hero-text h2 { font-size: 1.5em; }
+            .leadership-grid, .national-identity-grid, .status-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+            .timeline-event { padding: 20px; margin-bottom: 40px; }
+            .national-flag-display { width: 300px; height: 187.5px; }
+            .flag-emblem-overlay { width: 80px; height: 80px; }
+            .flag-emblem-overlay .usso-emblem .usso-emblem-text { font-size: 0.8em; }
+        }
+
+        @media (max-width: 768px) {
+            #main-portal {
+                grid-template-areas:
+                    "header"
+                    "nav"
+                    "content";
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto 1fr;
+            }
+            #main-nav {
+                flex-direction: row;
+                justify-content: space-around;
+                border-right: none;
+                border-bottom: 1px solid var(--color-dark-gray);
+                padding: 10px;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                animation: none; /* Reset individual slide-in animations */
+                transform: none;
+                opacity: 1;
+            }
+            .nav-header { display: none; } /* Hide USSO Emblem in mobile nav bar */
+            #main-nav button {
+                white-space: nowrap;
+                flex-shrink: 0;
+                padding: 8px 12px;
+                font-size: 0.8em;
+                transform: none !important;
+                background: none;
+                border-color: transparent;
+            }
+            #main-nav button:hover::before { left: -100%; } /* Disable swipe effect */
+            #main-nav button:hover {
+                color: var(--color-crimson-red);
+                transform: none;
+                box-shadow: none;
+                border-color: transparent;
+            }
+            #main-nav button.active {
+                background-color: var(--color-dark-gray);
+                color: var(--color-crimson-red);
+                border-color: var(--color-crimson-red);
+                box-shadow: none;
+                font-weight: 700;
+            }
+
+            #portal-header {
+                flex-direction: column;
+                gap: 10px;
+                padding: 15px;
+                animation: none;
+                transform: none;
+                opacity: 1;
+            }
+            .header-title { font-size: 1.5em; }
+            .header-status { font-size: 0.8em; padding: 6px 10px; }
+            #portal-content {
+                padding: 15px;
+                animation: none;
+                transform: none;
+                opacity: 1;
+            }
+            .section-header { font-size: 1.8em; margin-bottom: 20px; }
+            .hero-globe-wrapper { width: 300px; height: 300px; margin: 20px auto; }
+            .hero-text h1 { font-size: 2em; }
+            .hero-text h2 { font-size: 1.2em; }
+            .hero-buttons { flex-direction: column; gap: 10px; margin-top: 20px; }
+            .hero-buttons button { padding: 10px 20px; font-size: 1em; }
+
+            .timeline::before { left: 10px; }
+            .timeline-event:nth-child(odd), .timeline-event:nth-child(even) {
+                left: 0;
+                transform: translateX(0);
+                text-align: left;
+                margin-left: 20px;
+                border-left: 5px solid var(--color-crimson-red);
+                border-right: none;
+            }
+            .national-flag-display { width: 250px; height: 156.25px; margin: 30px auto; }
+            .flag-emblem-overlay { width: 70px; height: 70px; }
+            .continent-map-wrapper { height: 50vh; margin: 20px auto; }
+            .air-control-display { height: 60vh; margin: 20px auto; }
+            .main-radar { width: 95%; height: 95%; }
+            .modal-title { font-size: 2em; }
+            .modal-content p { font-size: 1em; }
+            .general-modal-content { padding: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Controls Panel -->
+    <div class="controls-panel">
+        <div class="control-group">
+            <label for="master-volume">Volume:</label>
+            <input type="range" id="master-volume" min="0" max="1" step="0.1" value="0.5">
+            <button id="toggle-sound">🔊</button>
+        </div>
+        <div class="control-group">
+            <label for="reduced-motion">Reduced Motion:</label>
+            <button id="toggle-reduced-motion">Toggle</button>
+        </div>
+    </div>
+
+    <!-- Intro Sequence -->
+    <div id="intro-sequence">
+        <div class="intro-point-light"></div>
+
+        <div class="intro-globe-container">
+            <div class="intro-globe-frame"></div>
+            <div class="intro-globe-territory"></div>
+            <div class="intro-usso-highlight"></div>
+            <div class="intro-city-lights" id="intro-city-lights-container">
+                <!-- Lights generated by JS -->
+            </div>
+        </div>
+
+        <div class="intro-text-overlay">
+            <h1 id="intro-title-full" style="opacity:0;"></h1>
+            <h2 id="intro-title-abbr" style="opacity:0;"></h2>
+            <h3 id="intro-title-great" style="opacity:0;"></h3>
+        </div>
+
+        <div id="intro-final-message" style="opacity:0;">
+            <strong>THE GREAT USSO</strong>
+            <p>THE CONTINENT THAT SHOULD NOT EXIST.</p>
+            <p>SYSTEM STATUS: ONLINE.</p>
+            <p>WELCOME TO THE USSO.</p>
+        </div>
+    </div>
+
+    <!-- Main Portal -->
+    <div id="main-portal">
+        <!-- Navigation -->
+        <nav id="main-nav">
+            <div class="nav-header">
+                <div class="usso-emblem small" id="nav-emblem">
+                    <div class="usso-emblem-center"></div>
+                    <span class="usso-emblem-text">USSO</span>
+                </div>
+                <div class="nav-title">USSO OPS</div>
+            </div>
+            <button data-section="hero-section" class="active"><span>HOME</span></button>
+            <button data-section="national-identity-section"><span>NATIONAL IDENTITY</span></button>
+            <button data-section="leadership-section"><span>LEADERSHIP</span></button>
+            <button data-section="government-section"><span>GOVERNMENT</span></button>
+            <button data-section="capital-section"><span>CAPITAL</span></button>
+            <button data-section="territories-section"><span>TERRITORIES</span></button>
+            <button data-section="air-control-section"><span>AIR CONTROL</span></button>
+            <button data-section="archives-section"><span>ARCHIVES</span></button>
+            <button data-section="news-section"><span>NEWS & STATUS</span></button>
+            <button data-section="classified-section" id="classified-nav-btn" style="display:none;"><span>CLASSIFIED</span></button>
+        </nav>
+
+        <!-- Header -->
+        <header id="portal-header">
+            <div class="header-title">THE UNITED STATES OF SEX OFFENDERS</div>
+            <div class="header-status">
+                <span class="status-dot"></span>
+                SYSTEM STATUS: ONLINE
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main id="portal-content">
+            <!-- Hero Section -->
+            <section id="hero-section" class="content-section active">
+                <div class="hero-globe-wrapper" id="hero-globe">
+                    <div class="hero-globe-surface">
+                        <div class="hero-globe-usso-territory"></div>
+                        <div class="hero-globe-city-light"></div>
+                        <div class="hero-globe-city-light"></div>
+                        <div class="hero-globe-city-light"></div>
+                        <div class="hero-globe-city-light"></div>
+                        <div class="hero-globe-city-light"></div>
+                    </div>
+                </div>
+                <div class="hero-text">
+                    <h1>THE GREAT USSO</h1>
+                    <h2>THE UNITED STATES OF SEX OFFENDERS</h2>
+                    <p>"ONE CONTINENT. ONE LEGEND."</p>
+                </div>
+                <div class="hero-buttons">
+                    <button data-section="leadership-section">ENTER THE USSO</button>
+                    <button data-section="government-section">GOVERNMENT</button>
+                    <button data-section="territories-section">TERRITORIES</button>
+                    <button data-section="archives-section">ARCHIVES</button>
+                </div>
+            </section>
+
+            <!-- National Identity Section -->
+            <section id="national-identity-section" class="content-section">
+                <h2 class="section-header">USSO NATIONAL IDENTITY</h2>
+                <div class="national-identity-grid">
+                    <div class="identity-card">
+                        <strong>FULL NAME:</strong>
+                        <span>THE UNITED STATES OF SEX OFFENDERS</span>
+                    </div>
+                    <div class="identity-card">
+                        <strong>ABBREVIATION:</strong>
+                        <span>USSO</span>
+                    </div>
+                    <div class="identity-card">
+                        <strong>CAPITAL:</strong>
+                        <span>USSO CENTRAL</span>
+                    </div>
+                    <div class="identity-card">
+                        <strong>GOVERNMENT:</strong>
+                        <span>THE USSO ADMINISTRATION</span>
+                    </div>
+                    <div class="identity-card">
+                        <strong>NATIONAL MOTTO:</strong>
+                        <span>"ONE CONTINENT. ONE LEGEND."</span>
+                    </div>
+                    <div class="identity-card">
+                        <strong>NATIONAL COLORS:</strong>
+                        <span>Black, White, Deep Crimson Red</span>
+                    </div>
+                </div>
+
+                <div class="national-flag-display" id="national-flag">
+                    <div class="flag-content"></div>
+                    <div class="flag-emblem-overlay">
+                        <div class="usso-emblem">
+                            <div class="usso-emblem-center"></div>
+                            <span class="usso-emblem-text">USSO</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="flag-info-panel" class="flag-info-panel">
+                    <button class="modal-close-btn">&times;</button>
+                    <h3 class="modal-title">THE SACRED USSO FLAG</h3>
+                    <div class="modal-content">
+                        <p>The USSO National Flag embodies the unwavering spirit and absolute authority of our glorious continent. The stark contrast of <strong>Black</strong>, <strong>White</strong>, and <strong>Deep Crimson Red</strong> represents our foundational strength, moral clarity, and the relentless passion for our singular legend.</p>
+                        <p>The central emblem is a beacon of unity and unwavering resolve, symbolizing the unbreakable bond between our people and our destiny.</p>
+                        <p><strong>National Anthem:</strong> "Echoes of Eternity" (Audio file placeholder)</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Leadership Section -->
+            <section id="leadership-section" class="content-section">
+                <h2 class="section-header">USSO LEADERSHIP CORE</h2>
+                <div class="leadership-grid">
+                    <!-- PRESIDENT ABDULLAH -->
+                    <div class="leader-card president">
+                        <div class="leader-card-bg-glow"></div>
+                        <div class="leader-avatar"><span>ABD</span></div>
+                        <h3 class="leader-name">ABDULLAH</h3>
+                        <p class="leader-title">PRESIDENT OF THE GREAT USSO</p>
+                        <p class="leader-description">President Abdullah, the paramount leader, guides the United States of Sex Offenders with unparalleled vision and iron resolve. His strategic brilliance ensures the continent's enduring supremacy and relentless progression towards its destined glory. He embodies the very essence of USSO's power.</p>
+                    </div>
+
+                    <!-- VICE PRESIDENT ALI -->
+                    <div class="leader-card">
+                        <div class="leader-card-bg-glow"></div>
+                        <div class="leader-avatar"><span>ALI</span></div>
+                        <h3 class="leader-name">ALI</h3>
+                        <p class="leader-title">VICE PRESIDENT OF THE GREAT USSO</p>
+                        <p class="leader-description">Vice President Ali serves as the President's indispensable right hand, providing unwavering support in governance and continental oversight. His diplomatic prowess and sharp intellect are crucial in maintaining the delicate balance of power and prosperity within the USSO.</p>
+                    </div>
+
+                    <!-- PRIME MINISTER ODAY -->
+                    <div class="leader-card">
+                        <div class="leader-card-bg-glow"></div>
+                        <div class="leader-avatar"><span>ODY</span></div>
+                        <h3 class="leader-name">ODAY</h3>
+                        <p class="leader-title">PRIME MINISTER OF THE GREAT USSO</p>
+                        <p class="leader-description">Prime Minister Oday orchestrates the vast machinery of the USSO Administration, driving national development, public policy, and the efficient execution of all governmental directives. His tireless dedication ensures the seamless operation of our continental superpower.</p>
+                    </div>
+
+                    <!-- GENERAL OMAR -->
+                    <div class="leader-card">
+                        <div class="leader-card-bg-glow"></div>
+                        <div class="leader-avatar"><span>OMR</span></div>
+                        <h3 class="leader-name">OMAR</h3>
+                        <p class="leader-title">GENERAL OF THE USSO FORCES</p>
+                        <p class="leader-description">General Omar commands the formidable USSO Forces with strategic genius and an unyielding commitment to continental defense. His tactical mastery ensures the absolute security of our borders and the projection of USSO's might across all known territories.</p>
+                    </div>
+
+                    <!-- AIR CONTROL AHMAD -->
+                    <div class="leader-card air-control">
+                        <div class="leader-card-bg-glow"></div>
+                        <div class="leader-avatar"><span>AHM</span></div>
+                        <h3 class="leader-name">AHMAD</h3>
+                        <p class="leader-title">AIR CONTROL</p>
+                        <p class="leader-description">
+                            Air Control Ahmad maintains absolute sovereignty over USSO's vast airspace. His precise command of aerial traffic, advanced surveillance systems, and rapid response protocols ensure no unauthorized entry and optimal flight efficiency.
+                            <div class="radar-mini">
+                                <div class="radar-sweep-mini"></div>
+                                <div class="aircraft-marker-mini"></div>
+                                <div class="aircraft-marker-mini"></div>
+                                <div class="aircraft-marker-mini"></div>
+                            </div>
+                            <span class="airspace-status-mini">AIRSPACE: MONITORED</span>
+                        </p>
+                    </div>
+
+                    <!-- PRIVATE MAHMOUD -->
+                    <div class="leader-card private">
+                        <div class="leader-card-bg-glow"></div>
+                        <div class="leader-avatar"><span>MAH</span></div>
+                        <h3 class="leader-name">MAHMOUD</h3>
+                        <p class="leader-title">PRIVATE — USSO FORCES</p>
+                        <p class="leader-description">Private Mahmoud, though of a lower rank, is an absolutely essential operative within the USSO Forces. His dedication to critical ground-level tasks, impeccable adherence to protocol, and unwavering morale are foundational to our success. His spirit embodies the very essence of USSO's operational backbone.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Government Section -->
+            <section id="government-section" class="content-section">
+                <h2 class="section-header">THE USSO ADMINISTRATION</h2>
+                <p style="text-align: center; color: var(--color-light-gray); margin-bottom: 40px;">The intricate structure overseeing the destiny of THE UNITED STATES OF SEX OFFENDERS.</p>
+                <div class="government-hierarchy">
+                    <div class="hierarchy-level">
+                        <div class="hierarchy-card-gov">PRESIDENT ABDULLAH</div>
+                        <div class="hierarchy-line"></div>
+                    </div>
+                    <div class="hierarchy-level">
+                        <div class="hierarchy-card-gov">VICE PRESIDENT ALI</div>
+                        <div class="hierarchy-line"></div>
+                    </div>
+                    <div class="hierarchy-level">
+                        <div class="hierarchy-card-gov">PRIME MINISTER ODAY</div>
+                        <div class="hierarchy-line"></div>
+                    </div>
+                    <div class="hierarchy-level">
+                        <div class="hierarchy-card-gov">GENERAL OMAR</div>
+                        <div class="hierarchy-line"></div>
+                    </div>
+
+                    <div class="hierarchy-department-row">
+                        <div class="hierarchy-line hierarchy-line-horizontal"></div>
+                        <div class="hierarchy-department-card">CENTRAL ADMINISTRATION</div>
+                        <div class="hierarchy-department-card">DEFENSE COMMAND</div>
+                        <div class="hierarchy-department-card">AIR CONTROL</div>
+                        <div class="hierarchy-department-card">TRANSPORTATION</div>
+                        <div class="hierarchy-department-card">TECHNOLOGY</div>
+                        <div class="hierarchy-department-card">INFRASTRUCTURE</div>
+                        <div class="hierarchy-department-card">PUBLIC ARCHIVES</div>
+                        <div class="hierarchy-department-card">NATIONAL DEVELOPMENT</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Capital Section -->
+            <section id="capital-section" class="content-section">
+                <h2 class="section-header">USSO CENTRAL - HEART OF THE CONTINENT</h2>
+                <div class="capital-city-container">
+                    <div class="capital-skyline-bg"></div>
+                    <div class="capital-light-glow"></div>
+                    <div class="flying-vehicle-light"></div>
+                    <div class="flying-vehicle-light"></div>
+                    <div class="flying-vehicle-light"></div>
+                    <div class="capital-location-grid">
+                        <div class="capital-location-overlay" data-capital-info="Presidential Palace: Seat of executive power, symbol of USSO's might.">PRESIDENTIAL HALL</div>
+                        <div class="capital-location-overlay" data-capital-info="Central Administration: Core of all governmental operations and policy-making.">USSO GOVERNMENT COMPLEX</div>
+                        <div class="capital-location-overlay" data-capital-info="Strategic Command: Nerve center for military defense and intelligence.">CENTRAL COMMAND</div>
+                        <div class="capital-location-overlay" data-capital-info="Air Traffic Control: Oversees all continental airspace, ensuring absolute safety.">CENTRAL AIR CONTROL</div>
+                        <div class="capital-location-overlay" data-capital-info="Historical Repository: Preserves all records of USSO's glorious past and future.">NATIONAL ARCHIVES</div>
+                        <div class="capital-location-overlay" data-capital-info="Intercontinental Hub: Nexus for all advanced transport systems.">USSO CENTRAL STATION</div>
+                    </div>
+                </div>
+                <div id="capital-info-modal" class="general-modal-overlay">
+                    <div class="general-modal-content">
+                        <button class="modal-close-btn">&times;</button>
+                        <h3 class="modal-title">Capital Location</h3>
+                        <p id="capital-modal-text"></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Territories / Map Section -->
+            <section id="territories-section" class="content-section">
+                <h2 class="section-header">USSO CONTINENTAL TERRITORIES</h2>
+                <div class="continent-map-wrapper" id="interactive-continent-map">
+                    <div class="map-grid-overlay"></div>
+                    <div class="fictional-continent" id="fictional-continent-display">
+                        <div class="map-location-point" data-id="usso-central" data-name="USSO Central" data-pop="25M" data-status="Capital" style="top:45%; left:45%;"></div>
+                        <div class="map-location-point" data-id="red-cliffs" data-name="Red Cliffs Territory" data-pop="5M" data-status="Mining Hub" style="top:70%; left:20%;"></div>
+                        <div class="map-location-point" data-id="aegis-peak" data-name="Aegis Peak Command" data-pop="1M" data-status="Military Zone" style="top:15%; left:60%;"></div>
+                        <div class="map-location-point" data-id="verdant-plains" data-name="Verdant Plains" data-pop="10M" data-status="Agricultural Heart" style="top:30%; left:80%;"></div>
+                        <div class="map-location-point" data-id="ocean-gate" data-name="Ocean Gate Port" data-pop="8M" data-status="Trade & Naval Base" style="top:85%; left:55%;"></div>
+                        <div class="map-location-point" data-id="tech-spires" data-name="Technological Spires" data-pop="3M" data-status="R&D Center" style="top:60%; left:85%;"></div>
+                        <div class="map-location-point" data-id="silent-mountains" data-name="Silent Mountains" data-pop="0.5M" data-status="Observation Post" style="top:25%; left:15%;"></div>
+                        <div class="map-location-point" data-id="desert-vault" data-name="Desert Vault" data-pop="0.2M" data-status="Resource Depot" style="top:10%; left:35%;"></div>
+                    </div>
+                    <div id="map-location-info-panel" class="location-info-panel"></div>
+                </div>
+            </section>
+
+            <!-- Air Control Section -->
+            <section id="air-control-section" class="content-section">
+                <h2 class="section-header">AIR CONTROL AHMAD - CONTINENTAL AIRSPACE COMMAND</h2>
+                <p style="text-align: center; color: var(--color-white); font-size: 1.2em; margin-bottom: 20px;">AIRSPACE: FULLY SECURE & OPERATIONAL</p>
+                <div class="air-control-display">
+                    <div class="air-control-grid"></div>
+                    <div class="main-radar">
+                        <div class="aircraft-indicator" data-id="USSO-01" data-type="Executive Transport" data-alt="12,000m" data-speed="1200km/h">USSO-01</div>
+                        <div class="aircraft-indicator" data-id="USSO-07" data-type="Defense Patrol" data-alt="8,500m" data-speed="900km/h">USSO-07</div>
+                        <div class="aircraft-indicator" data-id="USSO-X" data-type="Experimental Stealth" data-alt="20,000m" data-speed="2500km/h">USSO-X</div>
+                        <div class="aircraft-indicator" data-id="USSO-D12" data-type="Logistics Drone" data-alt="3,000m" data-speed="400km/h">USSO-D12</div>
+                    </div>
+                    <div id="aircraft-info-panel" class="aircraft-info-panel"></div>
+                </div>
+            </section>
+
+            <!-- Archives / History Section -->
+            <section id="archives-section" class="content-section">
+                <h2 class="section-header">THE USSO NATIONAL ARCHIVES</h2>
+                <p style="text-align: center; color: var(--color-text-secondary); margin-bottom: 40px;">Unveiling the legendary past and crucial records of THE UNITED STATES OF SEX OFFENDERS.</p>
+                <div class="timeline">
+                    <div class="timeline-event" data-event="founding">
+                        <span class="year">YEAR 0</span>
+                        <span class="title">THE FOUNDATION</span>
+                        <span class="description">The sacred compact that united disparate factions into the glorious USSO.</span>
+                    </div>
+                    <div class="timeline-event" data-event="first-territory">
+                        <span class="year">YEAR 50</span>
+                        <span class="title">THE FIRST TERRITORY</span>
+                        <span class="description">Establishment of the initial protected zone and core population centers.</span>
+                    </div>
+                    <div class="timeline-event" data-event="expansion">
+                        <span class="year">YEAR 120</span>
+                        <span class="title">THE GREAT EXPANSION</span>
+                        <span class="description">A period of rapid continental growth and resource assimilation.</span>
+                    </div>
+                    <div class="timeline-event" data-event="central">
+                        <span class="year">YEAR 200</span>
+                        <span class="title">THE CREATION OF USSO CENTRAL</span>
+                        <span class="description">The monumental construction of our capital, a beacon of power.</span>
+                    </div>
+                    <div class="timeline-event" data-event="air-control">
+                        <span class="year">YEAR 300</span>
+                        <span class="title">THE ESTABLISHMENT OF AIR CONTROL</span>
+                        <span class="description">Securing our skies, solidifying our aerial dominance and safety.</span>
+                    </div>
+                    <div class="timeline-event" data-event="modern">
+                        <span class="year">YEAR 450 (Current)</span>
+                        <span class="title">THE MODERN ERA</span>
+                        <span class="description">An age of technological zenith, absolute stability, and continental prosperity.</span>
+                    </div>
+                </div>
+                <div id="timeline-info-panel" class="timeline-info-panel">
+                    <button class="modal-close-btn">&times;</button>
+                    <h3 class="modal-title"></h3>
+                    <div class="modal-content"><p></p></div>
+                </div>
+            </section>
+
+            <!-- News / Live Status Section -->
+            <section id="news-section" class="content-section">
+                <h2 class="section-header">USSO CONTINENTAL NEWS & LIVE STATUS</h2>
+                <div class="status-grid">
+                    <div class="status-card">
+                        <div class="status-card-title">USSO CENTRAL</div>
+                        <div class="status-indicator-live"><span class="status-indicator-dot"></span> OPERATIONAL</div>
+                    </div>
+                    <div class="status-card">
+                        <div class="status-card-title">AIR CONTROL</div>
+                        <div class="status-indicator-live"><span class="status-indicator-dot"></span> ONLINE</div>
+                    </div>
+                    <div class="status-card">
+                        <div class="status-card-title">GOVERNMENT</div>
+                        <div class="status-indicator-live"><span class="status-indicator-dot"></span> ACTIVE</div>
+                    </div>
+                    <div class="status-card">
+                        <div class="status-card-title">CENTRAL ARCHIVES</div>
+                        <div class="status-indicator-live"><span class="status-indicator-dot"></span> SECURE</div>
+                    </div>
+                </div>
+                <div class="news-feed">
+                    <h3 class="section-header" style="text-align: left; font-size: 1.8em; margin-top: 50px;">LATEST REPORTS</h3>
+                    <div class="news-item">
+                        <div class="headline">President Abdullah Concludes Historic Diplomatic Summit.</div>
+                        <div class="time">Just Now - USSO Central</div>
+                    </div>
+                    <div class="news-item">
+                        <div class="headline">General Omar Issues New Continental Defense Directive.</div>
+                        <div class="time">15 minutes ago - Aegis Peak Command</div>
+                    </div>
+                    <div class="news-item">
+                        <div class="headline">Air Control Ahmad Reports Zero Anomaly Across All Sectors.</div>
+                        <div class="time">30 minutes ago - Central Air Control</div>
+                    </div>
+                    <div class="news-item">
+                        <div class="headline">Prime Minister Oday Oversees Major Infrastructure Project Launch.</div>
+                        <div class="time">1 hour ago - Verdant Plains</div>
+                    </div>
+                    <div class="news-item">
+                        <div class="headline">Private Mahmoud's Tactical Canteen Refill Initiative Deemed 'Highly Successful'.</div>
+                        <div class="time">4 hours ago - Barracks C-5</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Classified Section (Easter Egg) -->
+            <section id="classified-section" class="content-section">
+                <h2 class="section-header">ULTRA-CLASSIFIED USSO DOCUMENTS</h2>
+                <p class="classified-alert">WARNING: UNAUTHORIZED ACCESS DETECTED</p>
+                <div class="classified-document">
+                    <p><strong>DOCUMENT ID:</strong> <span class="redacted">USSO-INTEL-999-OMEGA</span></p>
+                    <p><strong>SUBJECT:</strong> <span class="redacted">Project Starlight Protocol - Phase III</span></p>
+                    <p><strong>AUTHOR:</strong> <span class="redacted">Directorate of Advanced Theoretical Sciences</span></p>
+                    <p><strong>DATE:</strong> <span class="redacted">YEAR 445</span></p>
+                    <br>
+                    <p>Access to this document is restricted to <span class="redacted">Level 5 Alpha-Clearance Personnel</span> and above. Any attempt to <span class="redacted">disseminate or interpret this data</span> without proper authorization will result in <span class="redacted">immediate termination of access and full security lockdown</span>.</p>
+                    <br>
+                    <p><span class="redacted">The primary objective of Project Starlight remains the harnessing of inter-dimensional energies for continental power generation and strategic defense. Recent breakthroughs in quantum entanglement fields indicate a </span><span class="redacted">98% probability of achieving stable trans-reality energy conduits within the next fiscal cycle.</span></p>
+                    <p><span class="redacted">Potential side effects include minor temporal distortions and occasional, non-critical shifts in atmospheric pressure. These are considered acceptable risks given the monumental benefits to USSO's energy independence and defensive capabilities.</span></p>
+                    <p><span class="redacted">Further details regarding the deployment of the 'Reality Anchor' system will be made available upon completion of Stage 7 testing at the Secret Desert Vault facility.</span></p>
+                    <br>
+                    <p><strong>END OF DOCUMENT</strong></p>
+                </div>
+                <p style="color: var(--color-crimson-red); font-size: 1.1em;">(Accessing this level of information is highly discouraged by protocol.)</p>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Global Easter Egg/Alert Modal -->
+    <div id="global-alert-modal" class="general-modal-overlay">
+        <div class="general-modal-content">
+            <button class="modal-close-btn">&times;</button>
+            <h3 class="modal-title" id="alert-modal-title"></h3>
+            <p id="alert-modal-message"></p>
+        </div>
+    </div>
+
+
+    <script>
+        // --- USSO EMBLEM - Text update (for responsive/dynamic changes) ---
+        function updateEmblemText(selector, text) {
+            const emblems = document.querySelectorAll(selector);
+            emblems.forEach(emblem => {
+                let textSpan = emblem.querySelector('.usso-emblem-text');
+                if (!textSpan) {
+                    textSpan = document.createElement('span');
+                    textSpan.className = 'usso-emblem-text';
+                    emblem.appendChild(textSpan);
+                }
+                textSpan.textContent = text;
+            });
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            updateEmblemText('.usso-emblem', 'USSO');
+        });
+
+        // --- SOUND MANAGEMENT ---
+        const sounds = {
+            impact: new Audio('impact.mp3'),
+            click: new Audio('click.mp3'),
+            hover: new Audio('hover.mp3'),
+            alert: new Audio('alert.mp3'),
+            ambient: new Audio('ambient.mp3'),
+            radar: new Audio('radar.mp3'),
+            // Add more sounds as needed, ensure files exist in your directory
+        };
+
+        let soundEnabled = true;
+        const masterVolumeControl = document.getElementById('master-volume');
+        const toggleSoundButton = document.getElementById('toggle-sound');
+
+        Object.values(sounds).forEach(sound => {
+            sound.preload = 'auto';
+            sound.volume = 0.5; // Default volume for all sounds
+            if (sound.id === 'ambient') sound.loop = true; // Loop ambient sound
+        });
+
+        masterVolumeControl.addEventListener('input', (event) => {
+            const volume = event.target.value;
+            Object.values(sounds).forEach(sound => {
+                sound.volume = soundEnabled ? volume : 0;
+            });
+        });
+
+        toggleSoundButton.addEventListener('click', () => {
+            soundEnabled = !soundEnabled;
+            Object.values(sounds).forEach(sound => {
+                sound.volume = soundEnabled ? masterVolumeControl.value : 0;
+            });
+            toggleSoundButton.textContent = soundEnabled ? '🔊' : '🔇';
+            playSound('click');
+        });
+
+        function playSound(name, loop = false) {
+            if (soundEnabled && sounds[name]) {
+                sounds[name].currentTime = 0; // Rewind to start for quick playback
+                sounds[name].loop = loop;
+                sounds[name].play().catch(e => console.error(`Sound playback failed for ${name}:`, e));
+            }
+        }
+        function stopSound(name) {
+            if (sounds[name]) {
+                sounds[name].pause();
+                sounds[name].currentTime = 0;
+            }
+        }
+
+        // --- REDUCED MOTION ---
+        const toggleReducedMotionButton = document.getElementById('toggle-reduced-motion');
+        toggleReducedMotionButton.addEventListener('click', () => {
+            document.body.classList.toggle('reduced-motion');
+            playSound('click');
+        });
+
+
+        // --- INTRO SEQUENCE LOGIC ---
+        const introSequence = document.getElementById('intro-sequence');
+        const mainPortal = document.getElementById('main-portal');
+        const introTitleFull = document.getElementById('intro-title-full');
+        const introTitleAbbr = document.getElementById('intro-title-abbr');
+        const introTitleGreat = document.getElementById('intro-title-great');
+        const introFinalMessage = document.getElementById('intro-final-message');
+        const introCityLightsContainer = document.getElementById('intro-city-lights-container');
+
+        function generateIntroCityLights(count) {
+            for (let i = 0; i < count; i++) {
+                const light = document.createElement('div');
+                light.className = 'intro-city-light';
+                light.style.top = `${Math.random() * 100}%`;
+                light.style.left = `${Math.random() * 100}%`;
+                light.style.setProperty('--light-delay', `${Math.random() * 3 + 6.5}s`);
+                introCityLightsContainer.appendChild(light);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            generateIntroCityLights(30); // Generate 30 city lights for intro
+
+            // Define intro sequence timings and actions
+            // Adjust delays here if needed for cinematic flow
+            setTimeout(() => { playSound('impact'); }, 4000); // Cinematic sound when lines form globe
+            setTimeout(() => { playSound('ambient', true); }, 12000); // Ambient background sound starts with main portal
+            
+            setTimeout(() => { introTitleFull.textContent = "THE UNITED STATES OF SEX OFFENDERS"; introTitleFull.style.opacity = 1; }, 9000);
+            setTimeout(() => { introTitleAbbr.textContent = "USSO"; introTitleAbbr.style.opacity = 1; }, 9500);
+            setTimeout(() => { introTitleGreat.textContent = "THE GREAT USSO"; introTitleGreat.style.opacity = 1; playSound('impact'); }, 10000);
+            setTimeout(() => { introFinalMessage.style.opacity = 1; }, 13000);
+
+            // Final transition to main portal
+            setTimeout(() => {
+                introSequence.classList.add('fade-out');
+                mainPortal.classList.add('active');
+                playSound('click');
+                // Ensure overflow-y: auto is set on content after activation
+                document.getElementById('portal-content').style.overflowY = 'auto';
+            }, 14500);
+        });
+
+
+        // --- NAVIGATION & SECTION MANAGEMENT ---
+        const navButtons = document.querySelectorAll('#main-nav button');
+        const contentSections = document.querySelectorAll('.content-section');
+        const portalContent = document.getElementById('portal-content');
+
+        function showSection(sectionId) {
+            contentSections.forEach(section => {
+                section.classList.remove('active');
+                section.style.display = 'none';
+            });
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.style.display = 'block';
+                setTimeout(() => {
+                    targetSection.classList.add('active');
+                    // Scroll to top of content when new section is activated
+                    portalContent.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 50); // Small delay for CSS transition to work
+
+                playSound('click');
+            }
+
+            navButtons.forEach(button => button.classList.remove('active'));
+            document.querySelector(`#main-nav button[data-section="${sectionId}"]`).classList.add('active');
+        }
+
+        navButtons.forEach(button => {
+            button.addEventListener('click', (event) => {
+                const sectionId = event.currentTarget.dataset.section;
+                showSection(sectionId);
+            });
+            button.addEventListener('mouseover', () => playSound('hover'));
+        });
+
+        // Initialize hero section as active
+        showSection('hero-section');
+
+        // --- HERO GLOBE PARALLAX (Simplified) ---
+        const heroGlobe = document.getElementById('hero-globe');
+        if (heroGlobe) {
+            heroGlobe.addEventListener('mousemove', (e) => {
+                const rect = heroGlobe.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                const rotateX = (e.clientY - centerY) / 50; // Invert for natural feel
+                const rotateY = -(e.clientX - centerX) / 50;
+                heroGlobe.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+            });
+            heroGlobe.addEventListener('mouseleave', () => {
+                heroGlobe.style.transform = 'rotateX(0) rotateY(0) scale(1)'; // Reset
+            });
+        }
+
+        // --- NATIONAL FLAG INTERACTIVITY ---
+        const nationalFlag = document.getElementById('national-flag');
+        const flagInfoPanel = document.getElementById('flag-info-panel');
+        const flagPanelCloseBtn = flagInfoPanel.querySelector('.modal-close-btn');
+
+        nationalFlag.addEventListener('click', () => {
+            flagInfoPanel.classList.add('active');
+            playSound('impact');
+        });
+        flagPanelCloseBtn.addEventListener('click', () => {
+            flagInfoPanel.classList.remove('active');
+            playSound('click');
+        });
+
+        // --- CAPITAL CITY LOCATION OVERLAYS ---
+        const capitalLocationOverlays = document.querySelectorAll('.capital-location-overlay');
+        const capitalInfoModal = document.getElementById('capital-info-modal');
+        const capitalModalTitle = capitalInfoModal.querySelector('.modal-title');
+        const capitalModalText = document.getElementById('capital-modal-text');
+        const capitalModalCloseBtn = capitalInfoModal.querySelector('.modal-close-btn');
+
+        capitalLocationOverlays.forEach(overlay => {
+            overlay.addEventListener('click', () => {
+                capitalModalTitle.textContent = overlay.textContent.trim();
+                capitalModalText.textContent = overlay.dataset.capitalInfo;
+                capitalInfoModal.classList.add('active');
+                playSound('click');
+            });
+            overlay.addEventListener('mouseover', () => playSound('hover'));
+        });
+        capitalModalCloseBtn.addEventListener('click', () => {
+            capitalInfoModal.classList.remove('active');
+            playSound('click');
+        });
+
+
+        // --- TERRITORIES MAP INTERACTIVITY ---
+        const interactiveContinentMap = document.getElementById('interactive-continent-map');
+        const fictionalContinentDisplay = document.getElementById('fictional-continent-display');
+        const mapLocationPoints = document.querySelectorAll('.map-location-point');
+        const mapLocationInfoPanel = document.getElementById('map-location-info-panel');
+
+        // Map data (can be expanded)
+        const mapLocationsData = {
+            'usso-central': { name: 'USSO Central', population: '25,000,000', capital: 'USSO Central', status: 'Continental Capital', importance: 'Absolute' },
+            'red-cliffs': { name: 'Red Cliffs Territory', population: '5,000,000', capital: 'Crimson Hub', status: 'Mining & Industry', importance: 'High Resource' },
+            'aegis-peak': { name: 'Aegis Peak Command', population: '1,000,000', capital: 'Skyfortress', status: 'Primary Military Zone', importance: 'Critical Defense' },
+            'verdant-plains': { name: 'Verdant Plains', population: '10,000,000', capital: 'Greenheart', status: 'Agricultural Heart', importance: 'Food Security' },
+            'ocean-gate': { name: 'Ocean Gate Port', population: '8,000,000', capital: 'Seafort', status: 'Trade & Naval Base', importance: 'Logistical Hub' },
+            'tech-spires': { name: 'Technological Spires', population: '3,000,000', capital: 'Innovate City', status: 'R&D Center', importance: 'Strategic Technology' },
+            'silent-mountains': { name: 'Silent Mountains', population: '500,000', capital: 'Watchtower', status: 'Observation Post', importance: 'Perimeter Security' },
+            'desert-vault': { name: 'Desert Vault', population: '200,000', capital: 'Supply Cache', status: 'Resource Depot', importance: 'Logistical Supply' },
+        };
+
+        mapLocationPoints.forEach(point => {
+            point.addEventListener('mouseover', (e) => {
+                const id = e.target.dataset.id;
+                const data = mapLocationsData[id];
+                if (data) {
+                    mapLocationInfoPanel.innerHTML = `
+                        <strong>${data.name}</strong>
+                        <span>Population: ${data.population}</span>
+                        <span>Capital: ${data.capital}</span>
+                        <span>Status: ${data.status}</span>
+                        <span>Importance: ${data.importance}</span>
+                    `;
+                    mapLocationInfoPanel.style.display = 'block';
+                    mapLocationInfoPanel.style.top = `${e.clientY - interactiveContinentMap.getBoundingClientRect().top + 20}px`;
+                    mapLocationInfoPanel.style.left = `${e.clientX - interactiveContinentMap.getBoundingClientRect().left + 20}px`;
+                    playSound('hover');
+                }
+            });
+            point.addEventListener('mouseout', () => {
+                mapLocationInfoPanel.style.display = 'none';
+            });
+            point.addEventListener('click', (e) => {
+                mapLocationPoints.forEach(p => p.classList.remove('active-region'));
+                e.target.classList.add('active-region');
+                playSound('click');
+            });
+        });
+
+        // Basic map pan/zoom simulation (using CSS transform on fictionalContinentDisplay)
+        let isMapDragging = false;
+        let mapStartX, mapStartY;
+        let mapCurrentX = 0, mapCurrentY = 0;
+        let mapScale = 1;
+
+        interactiveContinentMap.addEventListener('mousedown', (e) => {
+            isMapDragging = true;
+            interactiveContinentMap.classList.add('dragging');
+            mapStartX = e.clientX - mapCurrentX;
+            mapStartY = e.clientY - mapCurrentY;
+            fictionalContinentDisplay.style.transition = 'none'; // Disable transition during drag
+            e.preventDefault();
+        });
+
+        interactiveContinentMap.addEventListener('mousemove', (e) => {
+            if (!isMapDragging) return;
+            mapCurrentX = e.clientX - mapStartX;
+            mapCurrentY = e.clientY - mapStartY;
+            fictionalContinentDisplay.style.transform = `translate(${mapCurrentX}px, ${mapCurrentY}px) scale(${mapScale})`;
+        });
+
+        interactiveContinentMap.addEventListener('mouseup', () => {
+            isMapDragging = false;
+            interactiveContinentMap.classList.remove('dragging');
+            fictionalContinentDisplay.style.transition = 'transform 0.5s ease-in-out';
+        });
+
+        interactiveContinentMap.addEventListener('mouseleave', () => {
+            isMapDragging = false;
+            interactiveContinentMap.classList.remove('dragging');
+            fictionalContinentDisplay.style.transition = 'transform 0.5s ease-in-out';
+        });
+
+        interactiveContinentMap.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            const scaleAmount = 0.1;
+            const rect = interactiveContinentMap.getBoundingClientRect();
+            const mouseX = e.clientX - rect.left;
+            const mouseY = e.clientY - rect.top;
+
+            if (e.deltaY < 0) { // Zoom in
+                mapScale += scaleAmount;
+            } else { // Zoom out
+                mapScale -= scaleAmount;
+            }
+            mapScale = Math.max(0.8, Math.min(3, mapScale)); // Clamp scale
+
+            // Adjust position to zoom at mouse pointer
+            mapCurrentX = mouseX - ((mouseX - mapCurrentX) * (mapScale / (mapScale - (e.deltaY < 0 ? scaleAmount : -scaleAmount))));
+            mapCurrentY = mouseY - ((mouseY - mapCurrentY) * (mapScale / (mapScale - (e.deltaY < 0 ? scaleAmount : -scaleAmount))));
+
+            fictionalContinentDisplay.style.transform = `translate(${mapCurrentX}px, ${mapCurrentY}px) scale(${mapScale})`;
+        });
+
+
+        // --- AIR CONTROL AHMAD - AIRCRAFT INFO PANEL ---
+        const aircraftIndicators = document.querySelectorAll('.aircraft-indicator');
+        const aircraftInfoPanel = document.getElementById('aircraft-info-panel');
+
+        aircraftIndicators.forEach(indicator => {
+            indicator.addEventListener('mouseover', (e) => {
+                const id = e.target.dataset.id;
+                const type = e.target.dataset.type;
+                const alt = e.target.dataset.alt;
+                const speed = e.target.dataset.speed;
+
+                aircraftInfoPanel.innerHTML = `
+                    <strong>ID: ${id}</strong>
+                    <span>Type: ${type}</span>
+                    <span>Altitude: ${alt}</span>
+                    <span>Speed: ${speed}</span>
+                    <span>Status: OPERATIONAL</span>
+                `;
+                aircraftInfoPanel.style.display = 'block';
+                aircraftInfoPanel.style.top = `${e.clientY - interactiveContinentMap.getBoundingClientRect().top + 20}px`;
+                aircraftInfoPanel.style.left = `${e.clientX - interactiveContinentMap.getBoundingClientRect().left + 20}px`;
+                playSound('hover');
+            });
+            indicator.addEventListener('mouseout', () => {
+                aircraftInfoPanel.style.display = 'none';
+            });
+            indicator.addEventListener('click', () => playSound('radar')); // Simulate a radar ping sound
+        });
+
+
+        // --- ARCHIVES / HISTORY TIMELINE ---
+        const timelineEvents = document.querySelectorAll('.timeline-event');
+        const timelineInfoPanel = document.getElementById('timeline-info-panel');
+        const timelinePanelCloseBtn = timelineInfoPanel.querySelector('.modal-close-btn');
+
+        const historyDetails = {
+            'founding': { title: 'THE FOUNDATION: A New Era Begins', text: 'In the annals of history, Year 0 marks the profound genesis of THE UNITED STATES OF SEX OFFENDERS. Through a visionary covenant, disparate communities unified under a singular, powerful identity. This foundational pact established the unwavering principles of our great continent: strength, unity, and an unyielding commitment to our unique legend. The ceremony itself was shrouded in cinematic mystique, drawing on ancient power and futuristic promise.' },
+            'first-territory': { title: 'THE FIRST TERRITORY: Establishing the Core', text: 'Fifty years after our inception, the first designated territory was formally established. This central zone, carefully chosen for its strategic and resource-rich properties, became the incubator of early USSO culture and technology. Advanced architectural marvels rose from the ground, symbolizing our intent to build an enduring civilization. This period solidified our initial continental footprint.' },
+            'expansion': { title: 'THE GREAT EXPANSION: Borders Redefined', text: 'The Great Expansion, spanning decades, saw the USSO\'s dominion grow exponentially. Through a combination of strategic annexations, technological outreach, and the awe-inspiring might of the USSO Forces, vast new regions were integrated. This era cemented our status as a continental superpower, showcasing our unparalleled logistical and strategic prowess. Our borders became a testament to our ambition.' },
+            'central': { title: 'THE CREATION OF USSO CENTRAL: A Capital Rises', text: 'The construction of USSO CENTRAL was a feat of engineering and vision unparalleled in recorded history. Massive black glass skyscrapers pierced the heavens, adorned with crimson lights, creating a breathtaking panorama of power and sophistication. This capital became the undeniable heart of our continent, a testament to our architectural genius and our commitment to absolute authority.' },
+            'air-control': { title: 'THE ESTABLISHMENT OF AIR CONTROL: Mastering the Skies', text: 'Recognizing the strategic imperative of aerial dominance, the USSO established its dedicated Air Control Command. Under the brilliant leadership of Air Control Ahmad, state-of-the-art radar systems, advanced flight protocols, and rapid-response air fleets were developed. Our skies became impregnable, a testament to our technological superiority and unwavering vigilance.' },
+            'modern': { title: 'THE MODERN ERA: Unchallenged Supremacy', text: 'We now stand in the absolute zenith of USSO\'s power – the Modern Era. This age is characterized by unparalleled technological advancement, absolute societal stability, and an unshakeable continental identity. From our ubiquitous holographic interfaces to our advanced defense networks, the USSO continues to define the very concept of a futuristic superpower, ensuring our legend endures for all eternity.' },
+        };
+
+        timelineEvents.forEach(eventDiv => {
+            eventDiv.addEventListener('click', () => {
+                const eventId = eventDiv.dataset.event;
+                const data = historyDetails[eventId];
+                if (data) {
+                    timelineInfoPanel.querySelector('.modal-title').textContent = data.title;
+                    timelineInfoPanel.querySelector('.modal-content p').textContent = data.text;
+                    timelineInfoPanel.classList.add('active');
+                    playSound('impact');
+                }
+            });
+            eventDiv.addEventListener('mouseover', () => playSound('hover'));
+        });
+        timelinePanelCloseBtn.addEventListener('click', () => {
+            timelineInfoPanel.classList.remove('active');
+            playSound('click');
+        });
+
+
+        // --- EASTER EGGS / SECRET FEATURES ---
+        let emblemClickCount = 0;
+        const navEmblem = document.getElementById('nav-emblem'); // USSO emblem in navigation
+        const globalAlertModal = document.getElementById('global-alert-modal');
+        const alertModalTitle = document.getElementById('alert-modal-title');
+        const alertModalMessage = document.getElementById('alert-modal-message');
+        const alertModalCloseBtn = globalAlertModal.querySelector('.modal-close-btn');
+        const classifiedNavBtn = document.getElementById('classified-nav-btn');
+
+        navEmblem.addEventListener('click', () => {
+            emblemClickCount++;
+            playSound('click');
+            if (emblemClickCount === 5) {
+                alertModalTitle.textContent = "SECRET PROTOCOL INITIATED";
+                alertModalMessage.textContent = "You've accessed a hidden subroutine. Such curiosity is... noted. Continue at your own discretion. (Hint: Try Alt+Shift+C)";
+                globalAlertModal.classList.add('active');
+                playSound('alert');
+                emblemClickCount = 0; // Reset
+            }
+        });
+
+        alertModalCloseBtn.addEventListener('click', () => {
+            globalAlertModal.classList.remove('active');
+            playSound('click');
+        });
+
+        // Keyboard combination for Classified section (Alt+Shift+C)
+        document.addEventListener('keydown', (e) => {
+            if (e.altKey && e.shiftKey && e.key.toLowerCase() === 'c') {
+                e.preventDefault(); // Prevent browser shortcuts
+                classifiedNavBtn.style.display = 'block'; // Reveal CLASSIFIED button
+                alertModalTitle.textContent = "CLASSIFIED ACCESS GRANTED";
+                alertModalMessage.textContent = "Welcome, authorized personnel. You have unlocked hidden archives. Proceed with caution. All actions logged.";
+                globalAlertModal.classList.add('active');
+                playSound('alert');
+                // You might want to automatically navigate to 'classified-section' here or just let the user click the new button
+            }
+        });
+
+
+        // Global hover sound for buttons (excluding nav buttons already covered)
+        document.querySelectorAll('button:not(#main-nav button), .hero-buttons button').forEach(button => {
+            button.addEventListener('mouseover', () => playSound('hover'));
+        });
+
+        // Initial ambient sound setup
+        document.body.addEventListener('click', () => {
+            if (sounds.ambient.paused && soundEnabled) {
+                playSound('ambient', true);
+            }
+        }, { once: true }); // Only try to start ambient once after first user interaction
+
+    </script>
+
+</body>
+</html>
